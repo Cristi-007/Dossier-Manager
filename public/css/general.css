@@ -1,0 +1,16 @@
+.body-main {
+    background-color: rgb(240, 242, 245);
+  }
+
+.dashboard-logo {
+    width: 45px;
+}
+
+.dashboard-elements{
+  max-width: 90rem;
+}
+
+.remove-underline {
+  text-decoration: none;
+}
+  

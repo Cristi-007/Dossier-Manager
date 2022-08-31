@@ -1,0 +1,51 @@
+#alert_popover
+  {
+   display:block;
+   position:fixed;
+   bottom:50px;
+   left:50px;
+   z-index: 1000;
+  }
+
+
+  .wrapper {
+    display: table-cell;
+    vertical-align: bottom;
+    height: auto;
+    width:200px;
+  }
+
+
+  .alert_default
+  {
+    color: #333333;
+    background-color: #f2f2f2;
+    border-color: #cccccc;
+  }
+
+
+  .btn-close-size {
+    background-size: 0.60em;
+  }
+
+  .notification-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .notification-header p {
+    margin-bottom: 0px;
+  }
+  
+  /* .alert_default > small {
+    word-break: break-all;
+  } */
+
+  .alert-error {
+    color: #ff1414;
+  }
+
+
+  .alert-success {
+    color: #43b128;
+  }

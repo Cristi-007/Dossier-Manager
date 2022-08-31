@@ -1,0 +1,175 @@
+.entries-per-page {
+    display: flex;
+    align-items: center;
+}
+
+
+.entries {
+    width: 65px;
+}
+
+
+
+.entries-per-page span {
+    margin: 0px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1.25;
+    letter-spacing: 0.03333em;
+    opacity: 1;
+    text-transform: none;
+    vertical-align: unset;
+    text-decoration: none;
+    color: rgb(123, 128, 154);
+    padding-left: 7px;
+}
+
+
+.table-header {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 25px 39px;
+    opacity: 1;
+    background: transparent;
+    color: rgb(52, 71, 103);
+    box-shadow: none;
+}
+
+
+.search-box {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: 0.00938em;
+    display: inline-flex;
+}
+
+.search {
+    letter-spacing: inherit;
+    border: 1px solid rgb(210, 214, 218);
+    border-radius: 5px;
+    box-sizing: content-box;
+    height: 1.4375em;
+    width: 100%;
+    color: rgb(73, 80, 87);
+    font-size: 0.75rem;
+    padding: 0.625rem;
+    transition: 0.5s;
+    /* -webkit-transition: 0.5s; */
+    outline: none;
+}
+
+.search-box input:focus {
+    border: 1.2px solid rgb(26, 115, 232);
+}
+
+
+
+/* tabel */
+
+.main-table {
+    display: table;
+    width: 100%;
+}
+
+.table-column {
+    padding: 12px 24px;
+    color: hwb(0deg 43% 57% / 80%);
+    border-bottom: 1px solid rgb(233 233 233);
+    text-align: center;
+}
+
+
+.table-dossier-number{
+    width: 6%;
+}
+
+
+
+.table-dossier-date {
+    width: 5%;
+}
+
+
+.table-applicant {
+    width: 12%;
+}
+
+
+.table-case-type {
+    width: 8%;
+}
+
+
+.table-case-number {
+    width: 9%;
+}
+
+
+.table-expert {
+    width: 8%;
+}
+
+
+.table-location {
+    width: 8%;
+}
+
+
+.table-dossier-state {
+    width: 7%;
+}
+
+
+.edit-delete-dossier {
+    width: 7%;
+}
+
+
+
+.table-row {
+    text-align: center;
+    padding: 12px 20px;
+    color: rgb(104, 104, 104);
+    font-size: 0.875rem;
+    border-bottom: 1px solid rgb(233 233 233);
+}
+
+
+.table-body tr:hover {
+    background-color: rgb(245, 245, 245);
+    cursor: pointer;
+}
+
+
+.table-pagination {
+    padding: 15px 39px;
+}
+
+
+.pagination {
+    margin: 0;
+}
+
+.page-link {
+    color: #8b8b8b;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.page-item.active .page-link {
+    border-color: #b9b6b6;
+    background-image: linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232));
+}
+
+
+.reminder > p {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.875rem;
+    letter-spacing: 0.02857em;
+    color: rgb(123, 128, 154);
+    font-weight: 400;
+    margin: 0;
+}

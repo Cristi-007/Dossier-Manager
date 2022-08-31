@@ -1,0 +1,24 @@
+.min-h-screen{
+    background-image: url("../images/login.jpg");
+    background-size: cover; 
+    align-items: center;
+}
+
+.login-card-name{
+    text-align: center;
+    height: 50px;
+}
+
+.login-card-name > label {
+    font-size: 31px;
+    margin-top: 10px;
+}
+
+.login-page-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: white;
+    bottom: 0;
+    width: 100%;
+}

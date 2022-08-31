@@ -1,0 +1,110 @@
+.main-panel {
+    margin-left: 285px;
+    padding: 24px;
+    transition: margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, margin-right 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+    
+
+.main-panel-data-header {
+    margin-top: 48px;
+    margin-bottom: 64px;
+    text-align: center;
+    color: rgb(52, 71, 103);
+}
+  
+  
+.main-panel-content {
+    margin: 35px 0px;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    overflow-wrap: break-word;
+    background-color: rgb(255, 255, 255);
+    /* background-color: rgba(63, 62, 62, 0.486); */
+    border-radius: 0.75rem;
+    box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+}
+
+
+.data-add-container {
+    padding: 34px 85px;
+}
+
+.register-button {
+    -webkit-tap-highlight-color: transparent;
+    outline: 0px;
+    border: 0px;
+    margin: 0px;
+    cursor: pointer;
+    vertical-align: middle;
+    text-decoration: none;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: 0.02857em;
+    min-width: 64px;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+    /* transition: all 150ms ease-in 0s; */
+    min-height: 2.5rem;
+    padding: 0.625rem 1.5rem;
+    background-image: linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25));
+    color: rgb(255, 255, 255);
+    box-shadow: rgb(52 71 103 / 15%) 0rem 0.1875rem 0.1875rem 0rem, 
+                rgb(52 71 103 / 20%) 0rem 0.1875rem 0.0625rem -0.125rem, 
+                rgb(52 71 103 / 15%) 0rem 0.0625rem 0.3125rem 0rem;
+}
+
+
+.update-btn {
+    background-image: linear-gradient(195deg, rgb(195, 201, 219), rgb(6, 100, 227));
+}
+
+.update-btn-active {
+    background-image: linear-gradient(195deg, rgb(195, 219, 195), rgb(25, 98, 16));
+}
+
+.delete-btn {
+    background-image: linear-gradient(195deg, rgb(235, 180, 180), rgb(245, 23, 23));
+}
+
+
+
+/* FOOTER */
+.main-panel-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+
+.float-left {
+    margin-left: 20px;
+}
+
+
+.float-right > ul {
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.float-right > ul > li > a {
+    text-decoration: none;
+}
+
+.float-right {
+    margin-right: 20px;
+}
+
+
+.main-panel-divider {
+    margin: 10px 0 23px 0;
+    opacity: 0.40;
+    background-color: black;
+    background-image: linear-gradient(to right, 
+      /* rgb(255, 255, 255), 
+      rgb(10, 10, 10), 
+      rgb(255, 255, 255)) !important; */
+      rgb(255, 0, 0), 
+      rgba(252, 249, 249, 0.959), 
+      rgb(17, 0, 255)) !important;
+}
