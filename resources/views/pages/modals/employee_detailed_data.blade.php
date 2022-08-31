@@ -1,7 +1,5 @@
 <form action="" method="post" enctype="multipart/form-data" id="modal-form" >
     @csrf
-
-    {{-- <input type="hidden" name="_method" value="PUT" id="method-name"> --}}
     @method('PUT')
 
     <div class="modal fade text-left" id="ModalShow" tabindex="-1" role="dialog" aria-hidden="true">

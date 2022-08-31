@@ -13,7 +13,7 @@
         <!-- Styles -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/authPage.css') }}">
         <link rel="stylesheet" href="{{ asset('css/main-panel.css') }}">
 
         <!-- Scripts -->

@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/admin-panel.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/adminManagement.css') }}">
         <link rel="stylesheet" href="{{ asset('css/toogle-button.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
@@ -26,9 +26,10 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src="{{ asset('js/myApp.js') }}"></script>
+        <script src="{{ asset('js/dossier_management.js') }}"></script>
         <script src="{{ asset('js/notification.js') }}"></script>
-        <script src="{{ asset('js/admin_employee_manage.js') }}"></script>
+        <script src="{{ asset('js/employee_management.js') }}"></script>
+        <script src="{{ asset('js/nomenclatures_manager.js') }}"></script>
 
     </head>
     <body class="font-sans antialiased">

@@ -17,7 +17,7 @@ use App\Models\Report;
 use Illuminate\Support\Facades\Route;
 
 
-class CRUD_Controller extends Controller
+class DossierController extends Controller
 {
     protected $UpdateStatus = 'free';
     protected $DeleteStatus = 'free';
@@ -35,7 +35,7 @@ class CRUD_Controller extends Controller
             $notificationCheck = "free";
         };
 
-        return view('/pages.dataRegister', ['subdivisions' => $subdivisions, 
+        return view('/pages.DossierManagement.dossierRegister', ['subdivisions' => $subdivisions, 
                                             'actionTypes' => $actionTypes, 
                                             'expertiseTypes' => $expertiseTypes,
                                             'experts' => $experts,
@@ -262,7 +262,7 @@ class CRUD_Controller extends Controller
 
             $routeAction = substr(Route::currentRouteAction(), strpos(Route::currentRouteAction(), '@')+1);
 
-            return view('pages.showTablePaginated', ['dossiers' => $DbResults, 'DeleteStatus' => 'free', 
+            return view('pages.DossierManagement.dossierPaginatedTable', ['dossiers' => $DbResults, 'DeleteStatus' => 'free', 
                     'UpdateStatus' => 'free', 'routeAction'=>$routeAction])->render();
         }
     }
@@ -289,27 +289,27 @@ class CRUD_Controller extends Controller
         switch ($routeAction) {
             case 'update':
                 if($req->ajax() ) {
-                    return view('pages.showTablePaginated', ['dossiers' => $results, 'DeleteStatus' => 'free', 
+                    return view('pages.DossierManagement.dossierPaginatedTable', ['dossiers' => $results, 'DeleteStatus' => 'free', 
                                 'UpdateStatus' => $this->UpdateStatus, 'routeAction'=>$routeAction ])->render();
                 }
-                return view('pages.dataShow', ['dossiers' => $results, 'DeleteStatus' => 'free', 
+                return view('pages.DossierManagement.dossierView', ['dossiers' => $results, 'DeleteStatus' => 'free', 
                             'UpdateStatus' => $this->UpdateStatus, 'routeAction'=>$routeAction]);
 
             case 'delete':
                 if($req->ajax() ) {
-                    return view('pages.showTablePaginated', ['dossiers' => $results, 'DeleteStatus' => $this->DeleteStatus, 
+                    return view('pages.DossierManagement.dossierPaginatedTable', ['dossiers' => $results, 'DeleteStatus' => $this->DeleteStatus, 
                                 'UpdateStatus' => 'free', 'routeAction'=>$routeAction])->render();
                 }
-                return view('pages.dataShow', ['dossiers' => $results, 'DeleteStatus' => $this->DeleteStatus, 
+                return view('pages.DossierManagement.dossierView', ['dossiers' => $results, 'DeleteStatus' => $this->DeleteStatus, 
                             'UpdateStatus' => 'free', 'routeAction'=>$routeAction]);
 
             default:
                 if($req->ajax() ) {
-                    return view('pages.showTablePaginated', ['dossiers' => $results, 'DeleteStatus' => 'free', 
+                    return view('pages.DossierManagement.dossierPaginatedTable', ['dossiers' => $results, 'DeleteStatus' => 'free', 
                     'UpdateStatus' => 'free', 'routeAction'=>$routeAction])->render();
                 }
 
-                return view('pages.dataShow', ['dossiers' => $results, 'DeleteStatus' => 'free', 
+                return view('pages.DossierManagement.dossierView', ['dossiers' => $results, 'DeleteStatus' => 'free', 
                             'UpdateStatus' => 'free', 'routeAction'=>$routeAction]);
         }
  

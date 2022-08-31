@@ -128,3 +128,56 @@ function showNotification(notifyType) {
     }, 10000);
 
 }
+
+
+$(document).ready(function(e) {
+
+    if (window.location.pathname === "/addDossier") {
+        if (document.getElementById('test-id').value === "RegisterSuccess") {
+            showNotification(document.getElementById('test-id').value)
+        }
+
+        refineDepartments(document.getElementById('subdivision').value);
+    }
+
+
+    if (window.location.pathname === "/viewDossier") {
+        switch (document.getElementById('routeAction').value) {
+            case 'update':
+                showNotification(document.getElementById('update-check').value)
+                break;
+        
+            case 'delete':
+                showNotification(document.getElementById('delete-check').value)
+                break;
+        }
+    }
+
+
+
+    if (window.location.pathname === "/employee_manager_register") {
+        switch (document.getElementById('test-id').value) {
+            case 'EmployeeRegisterSuccess':
+                showNotification(document.getElementById('test-id').value)
+                break;
+        
+            case 'EmployeeRegisterError':
+                showNotification(document.getElementById('test-id').value)
+                break;
+        }
+    }
+
+
+    if (window.location.pathname === "/employee_manager_view") {
+
+        switch (document.getElementById('routeAction').value) {
+            case 'update':
+                showNotification(document.getElementById('update-check').value)
+                break;
+        }
+    }
+
+
+
+ 
+})

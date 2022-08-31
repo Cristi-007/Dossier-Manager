@@ -132,16 +132,5 @@ $(document).ready(function(e) {
     });
 
 
-    
-    if (window.location.pathname === "/employee_manager_view") {
-
-        switch (document.getElementById('routeAction').value) {
-            case 'update':
-                showNotification(document.getElementById('update-check').value)
-                break;
-        }
-    }
-
-
  
 })

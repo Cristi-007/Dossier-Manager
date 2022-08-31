@@ -52,9 +52,9 @@
               </a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="">
-                <span class="sidebar-mini"> M </span>
-                <span class="sidebar-normal">{{ __('Manager...') }} </span>
+              <a class="nav-link" href="{{ route('NomenclaturesView') }}">
+                <span class="sidebar-mini"> MN </span>
+                <span class="sidebar-normal">{{ __('Manager Nomenclatoare') }} </span>
               </a>
             </li>
           </ul>

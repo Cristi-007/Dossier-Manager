@@ -27,27 +27,28 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/addDossier', [App\Http\Controllers\CRUD_Controller::class, 'dataRegisterPrepare'])->middleware('auth')->name('NewDossiser');
-Route::get('/viewDossier', [App\Http\Controllers\CRUD_Controller::class, 'showDossierList'])->middleware('auth')->name('ShowDossierList');
+Route::get('/addDossier', [App\Http\Controllers\DossierController::class, 'dataRegisterPrepare'])->middleware('auth')->name('NewDossiser');
+Route::get('/viewDossier', [App\Http\Controllers\DossierController::class, 'showDossierList'])->middleware('auth')->name('ShowDossierList');
+Route::post('/addDossier', [App\Http\Controllers\DossierController::class, 'register'])->name('RegisterNewDossier');
+Route::delete('/viewDossier', [App\Http\Controllers\DossierController::class, 'delete']);
+Route::put('/viewDossier', [App\Http\Controllers\DossierController::class, 'update']);
 
 
-Route::post('/addDossier', [App\Http\Controllers\CRUD_Controller::class, 'register'])->name('RegisterNewDossier');
-Route::delete('/viewDossier', [App\Http\Controllers\CRUD_Controller::class, 'delete']);
-Route::put('/viewDossier', [App\Http\Controllers\CRUD_Controller::class, 'update']);
-
-
-// Route::view('/employee_manager', 'pages.EmployeeManagement.employeeRegister')->name('EmployeeManager');
 Route::get('/employee_manager_view', [App\Http\Controllers\EmployeeController::class, 'show'])->name('ShowEmployeeList');
 Route::post('/employee_manager_register', [App\Http\Controllers\EmployeeController::class, 'register'])->name('RegisterEmployee');
-Route::view('/employee_manager_register', 'pages.EmployeeManagement.employeeRegister')->name('RegisterEmployeeView');
+Route::view('/employee_manager_register', 'pages.EmployeeManagement.employeeRegister', ['notificationCheck' => 'free'])->name('RegisterEmployeeView');
 Route::put('/employee_manager_view', [App\Http\Controllers\EmployeeController::class, 'update']);
 
+
+Route::view('/nomenclatures_view', 'pages.NomenclaturesManagement.nomenclatureView')->name('NomenclaturesView');
+
 // routes for ajax requests
-Route::post('departments', [App\Http\Controllers\CRUD_Controller::class, 'getDepartments']);
-Route::post('showDetailedDossier', [App\Http\Controllers\CRUD_Controller::class, 'getDetailedDossierData']);
-Route::post('search', [App\Http\Controllers\CRUD_Controller::class, 'search']);
-Route::post('pagination', [App\Http\Controllers\CRUD_Controller::class, 'pagination']);
+Route::post('departments', [App\Http\Controllers\DossierController::class, 'getDepartments']);
+Route::post('showDetailedDossier', [App\Http\Controllers\DossierController::class, 'getDetailedDossierData']);
+Route::post('search', [App\Http\Controllers\DossierController::class, 'search']);
+Route::post('pagination', [App\Http\Controllers\DossierController::class, 'pagination']);
 Route::post('expertDetailedData', [App\Http\Controllers\EmployeeController::class, 'getDetailedEmployeeData']);
+Route::post('showNomenclature', [App\Http\Controllers\NomenclaturesController::class, 'show']);
 
 
 // INFO

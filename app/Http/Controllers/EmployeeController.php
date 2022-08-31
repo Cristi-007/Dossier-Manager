@@ -21,8 +21,6 @@ class EmployeeController extends Controller
 
     public function register(Request $request) {
         $DataValidation = new DataValidationController();
-        $User = NULL;
-        $Expert = NULL; 
 
         $validator = $DataValidation->employeeValidation($request);
         if ($validator->fails()) {

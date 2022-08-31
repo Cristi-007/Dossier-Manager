@@ -236,13 +236,6 @@ function showDossierDetailedData(id) {
 }
 
 
-function registerDossier() {
-    if (document.getElementById('test-id').value === "RegisterSuccess") {
-        showNotification(document.getElementById('test-id').value)
-    }
-}
-
-
 function toogleUpdateDeleteButtons(){
     var updateBTN = document.getElementById('update-dossier-btn');
     var deleteBTN = document.getElementById('delete-dossier-btn');
@@ -385,26 +378,5 @@ $(document).ready(function(e) {
         var pageNumber = 1;
         showPaginatedDossierList(pageNumber);
     })
-    
-
-    if (window.location.pathname === "/addDossier") {
-        registerDossier()
-        refineDepartments(document.getElementById('subdivision').value);
-    }
-
-
-    if (window.location.pathname === "/viewDossier") {
-
-        switch (document.getElementById('routeAction').value) {
-            case 'update':
-                showNotification(document.getElementById('update-check').value)
-                break;
-        
-            case 'delete':
-                showNotification(document.getElementById('delete-check').value)
-                break;
-        }
-    }
-
- 
+     
 })

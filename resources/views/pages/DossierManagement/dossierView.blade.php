@@ -27,10 +27,10 @@
                 </div>
             </div>
             <div id="paginatedTable">
-                @include('pages.showTablePaginated')
+                @include('pages.DossierManagement.dossierPaginatedTable')
             </div>
         </div>
     </div>
 </div>
-    @include('pages.modals.dataShowDetailed')
+    @include('pages.modals.dossierDetailedData')
 @endsection

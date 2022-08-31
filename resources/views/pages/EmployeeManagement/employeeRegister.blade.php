@@ -98,6 +98,7 @@
                         </select>
                 </div>
             </div>
+            <input type="hidden" id="test-id" value="{{$notificationCheck}}">
         </div>
         <div class="atention">
             <span style="font-size: 15px"> * expertul și utilizatorul de sistem sunt înregistrați concomitent!</span>
