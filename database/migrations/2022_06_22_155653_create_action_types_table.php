@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('action_types_id');
             $table->string('action_type') -> unique();
             $table->char('abbreviation', 15) -> nullable();
+            $table->tinyInteger('active', 2) ->default(1);
             $table->timestamps();
         });
     }

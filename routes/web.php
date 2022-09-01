@@ -41,6 +41,8 @@ Route::put('/employee_manager_view', [App\Http\Controllers\EmployeeController::c
 
 
 Route::view('/nomenclatures_view', 'pages.NomenclaturesManagement.nomenclatureView')->name('NomenclaturesView');
+Route::view('/nomenclatures_register', 'pages.NomenclaturesManagement.nomenclatureRegister')->name('NomenclaturesRegisterView');
+
 
 // routes for ajax requests
 Route::post('departments', [App\Http\Controllers\DossierController::class, 'getDepartments']);

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('subdivision_id')->constrained('subdivisions', 'subdivisions_id');
             $table->string('department');
             $table->char('abbreviation', 20) -> nullable();
+            $table->tinyInteger('active', 2) ->default(1);
             $table->timestamps();           
         });
 

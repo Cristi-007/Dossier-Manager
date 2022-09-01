@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('subdivisions_id');
             $table->string('subdivision') -> unique();
             $table->char('abbreviation', 15) -> nullable();
+            $table->tinyInteger('active', 2) ->default(1);
             $table->timestamps();
 
             //! first register should be DEFAULT (with NULLs)

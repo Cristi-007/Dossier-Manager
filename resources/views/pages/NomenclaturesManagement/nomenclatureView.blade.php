@@ -22,8 +22,8 @@
                     </select>
                 </div>
             </div>
-            <div id="nomenclature-data">
-
+            <div id="paginatedTable">
+                {{-- data from ajax --}}
             </div>
         </div>
     </div>

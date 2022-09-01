@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('object_types_id');
             $table->string('object_type') -> unique();
             $table->char('abbreviation',15) -> nullable();
+            $table->tinyInteger('active', 2) ->default(1);
             $table->timestamps();
         });
     }

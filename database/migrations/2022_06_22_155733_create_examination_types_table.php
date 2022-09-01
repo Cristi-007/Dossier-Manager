@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('examination_types', function (Blueprint $table) {
             $table->id('examination_types_id');
             $table->string('examination_type') -> unique();
+            $table->tinyInteger('active', 2) ->default(1);
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('report_types_id');
             $table->string('report_type') -> unique();
             $table->char('abbreviation',15) -> nullable();
+            $table->tinyInteger('active', 2) ->default(1);
             $table->timestamps();
         });
     }

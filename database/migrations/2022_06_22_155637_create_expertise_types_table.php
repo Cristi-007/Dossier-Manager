@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('expertise_types', function (Blueprint $table) {
             $table->id('expertise_types_id');
             $table->string('expertise_type') -> unique();
+            $table->tinyInteger('active', 2) ->default(1);
             $table->timestamps();
         });
     }

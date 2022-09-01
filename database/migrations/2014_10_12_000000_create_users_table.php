@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('accesstype', 30)->default(1);
+            $table->tinyInteger('active', 2) ->default(1);
             $table->rememberToken();
             $table->timestamps();
         });
