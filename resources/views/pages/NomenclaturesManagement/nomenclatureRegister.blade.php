@@ -20,8 +20,8 @@
         </div><br/>
       @endif
 
-    @switch($nomenclature)
-        @case("action_types")
+    @switch($table)
+        @case("Temei examinare / Tipul cauzei")
             <div class="table-name table-pagination" id="employee-register-header">
                 <h4>Înregistrare - Temei examinate / Tip cauză</h4>
             </div>
@@ -29,11 +29,11 @@
             <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="admin-container">
-    
                     <div class="expert-register-container">
+                        <input type="hidden" name="checker" id="checker" value="Temei examinare / Tipul cauzei">
                     
                         <label for="action-type">Tip cauză</label>
-                        <input class="form-control" type="text" id="action-type" name="action-type" placeholder="...." 
+                        <input class="form-control" type="text" id="action_type" name="action_type" placeholder="...." 
                                     value="{{old('action-type')}}">
                         <br>
     
@@ -60,7 +60,7 @@
             </form>
             @break
 
-        @case("examination_types")
+        @case("Tipul examinării")
             <div class="table-name table-pagination" id="employee-register-header">
                 <h4>Înregistrare - Tip examinare</h4>
             </div>
@@ -68,8 +68,9 @@
             <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="admin-container">
-    
                     <div class="expert-register-container">
+                        <input type="hidden" name="checker" id="checker" value="Tipul examinării">
+
                         <label for="examination_type">Tip examinare</label>
                         <input class="form-control" type="text" id="examination_type" name="examination_type" placeholder="....." 
                                     value="{{old('examination_type')}}">
@@ -92,7 +93,7 @@
             </form>
             @break
 
-        @case("expertise_types")
+        @case("Clasificarea expertizei")
             <div class="table-name table-pagination" id="employee-register-header">
                 <h4>Înregistrare - Clasificare expertiză</h4>
             </div>
@@ -100,8 +101,9 @@
             <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="admin-container">
-    
                     <div class="expert-register-container">
+                        <input type="hidden" name="checker" id="checker" value="Clasificarea expertizei">
+
                         <label for="expertise_type">Clasificare expertiză</label>
                         <input class="form-control" type="text" id="expertise_type" name="expertise_type" placeholder="...." 
                                     value="{{old('expertise_type')}}">
@@ -126,7 +128,7 @@
             @break
 
 
-        @case("object_types")
+        @case("Tipul obiectului")
             <div class="table-name table-pagination" id="employee-register-header">
                 <h4>Înregistrare - Tip obiect</h4>
             </div>
@@ -135,6 +137,8 @@
                 @csrf
                 <div class="admin-container">
                     <div class="object_type-container">
+                        <input type="hidden" name="checker" id="checker" value="Tipul obiectului">
+
                         <label for="object_type">Tip obiect</label>
                         <input class="form-control" type="text" id="object_type" name="object_type" placeholder="...." 
                                     value="{{old('object_type')}}">
@@ -163,7 +167,7 @@
             @break
 
 
-        @case("report_types")
+        @case("Genul expertizei")
             <div class="table-name table-pagination" id="employee-register-header">
                 <h4>Înregistrare - Gen expertiză</h4>
             </div>
@@ -171,8 +175,9 @@
             <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="admin-container">
-    
                     <div class="expert-register-container">
+                        <input type="hidden" name="checker" id="checker" value="Genul expertizei">
+
                         <label for="report_type">Gen expertiză</label>
                         <input class="form-control" type="text" id="report_type" name="report_type" placeholder="...." 
                                     value="{{old('report_type')}}">
@@ -201,7 +206,7 @@
             @break
 
 
-        @case("subdivisions")
+        @case("Subdiviziuni / Unități")
             <div class="table-name table-pagination" id="employee-register-header">
                 <h4>Înregistrare - Subdiviziune / Unitate</h4>
             </div>
@@ -209,15 +214,16 @@
             <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="admin-container">
-    
                     <div class="expert-register-container">
+                        <input type="hidden" name="checker" id="checker" value="Subdiviziuni / Unități">
+
                         <label for="subdivision">Denumire subdiviziune</label>
                         <input class="form-control" type="text" id="subdivision" name="subdivision" placeholder="...." 
                                     value="{{old('subdivision')}}">
                         <br>
     
                         <label for="abbreviation">Prescurtare</label>
-                        <input class="form-control" type="text" id="abbreviation" name="abbreviation" placeholder="...." 
+                        <input class="form-control" type="text" id="subdivision_abbreviation" name="subdivision_abbreviation" placeholder="...." 
                                     value="{{old('abbreviation')}}">
                         <br> 
                     
@@ -237,11 +243,7 @@
             </div>
     
             </form>
-            @break
-
+            @break             
     @endswitch
-
-
-
 </div>
 @endsection

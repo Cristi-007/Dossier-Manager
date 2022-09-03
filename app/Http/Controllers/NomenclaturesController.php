@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataValidationController;
 
 use App\Models\ActionTypes;
 use App\Models\Department;
@@ -45,4 +46,91 @@ class NomenclaturesController extends Controller
 
         return $data;
     }
+
+
+    public function register(Request $request) {
+        $DataValidation = new DataValidationController();
+
+        $validator = $DataValidation->nomenclatureValidation($request);
+        if ($validator->fails()) {
+            return redirect('nomenclatures_register/'. $request['checker'])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        $validatedData = $validator->validated();
+
+        try {
+            DB::beginTransaction();
+
+            switch ($request['checker']) {
+                case 'Temei examinare / Tipul cauzei':
+                    $ActionType = ActionTypes::create([
+                        'action_type' => $validatedData['action_type'],
+                        'abbreviation' => $validatedData['abbreviation'],
+                        'active' => isset($_POST['active']) ? 1 : 0,
+                    ]);
+                    break;
+                
+                case 'Tipul examinării':
+                    $ExaminationType = ExaminationTypes::create([
+                        'examination_type' => $validatedData['examination_type'],
+                        'active' => isset($_POST['active']) ? 1 : 0,
+                    ]);
+                    break;
+    
+                case 'Clasificarea expertizei':
+                    $ExpertiseType = ExpertiseTypes::create([
+                        'expertise_type' => $validatedData['expertise_type'],
+                        'active' => isset($_POST['active']) ? 1 : 0,
+                    ]);
+                    break;
+    
+                case 'Tipul obiectului':
+                    $ObjectType = ObjectTypes::create([
+                        'object_type' => $validatedData['object_type'],
+                        'abbreviation' => $validatedData['abbreviation'],
+                        'active' => isset($_POST['active']) ? 1 : 0,
+                    ]);
+                    break;
+    
+                case 'Genul expertizei':
+                    $ReportType = ReportTypes::create([
+                        'report_type' => $validatedData['report_type'],
+                        'abbreviation' => $validatedData['abbreviation'],
+                        'active' => isset($_POST['active']) ? 1 : 0,
+                    ]);
+                    break;
+    
+                case 'Subdiviziuni / Unități':
+
+                    $Subdivision = Subdivision::create([
+                        'action_type' => $validatedData['action_type'],
+                        'abbreviation' => $validatedData['abbreviation'],
+                        'active' => isset($_POST['active']) ? 1 : 0,
+                    ]);
+
+
+                    $Department = Department::create([
+                        'department' => $validatedData['department'],
+                        'abbreviation' => $validatedData['department_abbreviation'],
+                        'active' => isset($_POST['active']) ? 1 : 0,
+                        'subdivision_id' => $Subdivision['subdivisions_id']
+                    ]);
+                    break;
+            }
+
+               
+            DB::commit();
+            return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'EmployeeRegisterSuccess', 'table'=>$request['checker']]);
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'EmployeeRegisterError', 'table'=>$request['checker']]);
+
+            // throw $ex; de prelucrat erorile
+        }
+
+
+
+    }
+
 }

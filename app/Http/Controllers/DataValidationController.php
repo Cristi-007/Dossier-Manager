@@ -101,9 +101,6 @@ class DataValidationController extends Controller
 
 
     public function employeeValidation(Request $request) {
-
-
-
         $validator = Validator::make($request->all(), 
         [
             "expert_name" => 'required',
@@ -137,6 +134,66 @@ class DataValidationController extends Controller
         ]
     );
     
+    return $validator;
+    }
+
+
+
+    public function nomenclatureValidator(Request $request) {
+        switch ($request['checker']) {
+            case 'Temei examinare / Tipul cauzei':
+                    $validator = Validator::make($request->all(), 
+                    [ "action-type" => 'required' ], 
+                    [ 'required' => "Cîmpul :attribute este obligatoriu." ],
+                    [ 'action-type' => '"Tip cauză"' ] );
+                break;
+            
+            case 'Tipul examinării':
+                    $validator = Validator::make($request->all(), 
+                    [ "examination_type" => 'required' ], 
+                    [ 'required' => "Cîmpul :attribute este obligatoriu." ],
+                    [ 'examination_type' => '"Tip examinare"'] );
+                break;
+
+            case 'Clasificarea expertizei':
+                    $validator = Validator::make($request->all(), 
+                    [ "expertise_type" => 'required' ], 
+                    [ 'required' => "Cîmpul :attribute este obligatoriu." ],
+                    [ 'expertise_type' => '"Clasificare expertiză"'] );
+                break;
+
+            case 'Tipul obiectului':
+                    $validator = Validator::make($request->all(), 
+                    [ "object_type" => 'required' ], 
+                    [ 'required' => "Cîmpul :attribute este obligatoriu." ],
+                    [ 'object_type' => '"Tip obiect"' ] );
+                break;
+
+            case 'Genul expertizei':
+                    $validator = Validator::make($request->all(), 
+                    [ "report_type" => 'required' ], 
+                    [ 'required' => "Cîmpul :attribute este obligatoriu." ],
+                    [ 'report_type' => '"Gen expertiză"' ] );
+                break;
+
+            case 'Subdiviziuni / Unități':
+                    $validator = Validator::make($request->all(), 
+                    [
+                        "subdivision" => 'required',
+                        "department" => 'required',
+                    ], 
+                    [
+                        'required' => "Cîmpul :attribute este obligatoriu.",
+                    ],
+                    [
+                        "subdivision" => '"Denumire subdiviziune"',
+                        "department" => '"Denumire unitate"',
+                    ]
+                    );
+                break;
+
+        }
+
     return $validator;
     }
 

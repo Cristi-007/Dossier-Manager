@@ -41,7 +41,12 @@ Route::put('/employee_manager_view', [App\Http\Controllers\EmployeeController::c
 
 
 Route::view('/nomenclatures_view', 'pages.NomenclaturesManagement.nomenclatureView')->name('NomenclaturesView');
-Route::view('/nomenclatures_register', 'pages.NomenclaturesManagement.nomenclatureRegister')->name('NomenclaturesRegisterView');
+Route::get('/nomenclatures_register/{table}', function($table) {
+    return view('pages.NomenclaturesManagement.nomenclatureRegister', ["table" => $table, 'notificationCheck' => 'free']);
+})->name('NomenclaturesRegisterView')->where('table', '[\w\s\-_\/]+');
+Route::post('/nomenclatures_register', [App\Http\Controllers\NomenclaturesController::class, 'register'])->name('RegisterNomenclature');
+
+
 
 
 // routes for ajax requests

@@ -160,7 +160,8 @@ function showNomenclature(type) {
                                     </div>
                                     <div class="table-header">
                                     <div class="employee-register-btn">
-                                        <a href="${route('NomenclaturesRegisterView')}" class="btn btn-primary btn-format" aria-valuenow="${ $("#nomenclature-select option:selected").text()}">+&nbsp; add new</a>
+                                        <a href="/nomenclatures_register/${ $("#nomenclature-select option:selected").text() }" class="btn btn-primary btn-format" 
+                                                >+&nbsp; add new</a>
                                     </div>
                                     </div>
                                     <table role="table" class="table-view" id="show-dossier-table">
@@ -185,4 +186,10 @@ function showNomenclature(type) {
     } else {
         $('#paginatedTable').empty();
     }
+}
+
+
+
+function nomenclatureDetailedData(id, section) {
+
 }
