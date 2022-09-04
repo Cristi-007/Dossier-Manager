@@ -28,5 +28,5 @@
         </div>
     </div>
 </div>
-    {{-- @include('pages.modals.employee_detailed_data') --}}
+    @include('pages.modals.nomenclatureDetailedData')
 @endsection

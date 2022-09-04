@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ExpertiseTypes extends Model
 {
     protected $table = 'expertise_types';
+
+    protected $fillable = [
+        'expertise_type',
+        'active',
+    ];
 }

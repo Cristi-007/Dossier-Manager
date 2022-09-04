@@ -153,11 +153,11 @@ class EmployeeController extends Controller
     private function getEmployee($where) {
 
         $data = DB::table('experts')
-        ->join('users', 'id', '=', 'user_id')
-        ->select(['*', 'users.created_at as user_created_at', 'experts.created_at as expert_created_at'])
-        ->whereRaw($where)
-        ->orderBy('experts_id', 'asc')
-        ->paginate(10);
+            ->join('users', 'id', '=', 'user_id')
+            ->select(['*', 'users.created_at as user_created_at', 'experts.created_at as expert_created_at'])
+            ->whereRaw($where)
+            ->orderBy('experts_id', 'asc')
+            ->paginate(10);
 
         foreach($data as $item) {
             $item->expert_name = ucwords(strtolower($item->expert_name));

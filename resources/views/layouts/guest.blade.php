@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/authPage.css') }}">
         <link rel="stylesheet" href="{{ asset('css/main-panel.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dataViewTable.css') }}">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>

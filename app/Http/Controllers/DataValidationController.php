@@ -139,13 +139,13 @@ class DataValidationController extends Controller
 
 
 
-    public function nomenclatureValidator(Request $request) {
+    public function nomenclatureValidation(Request $request) {
         switch ($request['checker']) {
             case 'Temei examinare / Tipul cauzei':
                     $validator = Validator::make($request->all(), 
-                    [ "action-type" => 'required' ], 
+                    [ "action_type" => 'required' ], 
                     [ 'required' => "Cîmpul :attribute este obligatoriu." ],
-                    [ 'action-type' => '"Tip cauză"' ] );
+                    [ 'action_type' => '"Tip cauză"' ] );
                 break;
             
             case 'Tipul examinării':
@@ -176,25 +176,26 @@ class DataValidationController extends Controller
                     [ 'report_type' => '"Gen expertiză"' ] );
                 break;
 
-            case 'Subdiviziuni / Unități':
+            case 'Subdiviziuni':
+                    $validator = Validator::make($request->all(), 
+                    [ "subdivision" => 'required'], 
+                    [ 'required' => "Cîmpul :attribute este obligatoriu." ],
+                    [ "subdivision" => '"Denumire subdiviziune"'] );
+                break;
+
+                case 'Unitati':
                     $validator = Validator::make($request->all(), 
                     [
-                        "subdivision" => 'required',
-                        "department" => 'required',
-                    ], 
-                    [
-                        'required' => "Cîmpul :attribute este obligatoriu.",
-                    ],
-                    [
-                        "subdivision" => '"Denumire subdiviziune"',
-                        "department" => '"Denumire unitate"',
+                        "subdivision_select" => ['required', function($attribute, $value, $fail) use ($request){ 
+                            if($value == 0) { $fail('Cîmpul "Subdiviziune" este obligatoriu.'); } 
+                        }]
                     ]
                     );
                 break;
 
         }
 
-    return $validator;
+        return $validator;
     }
 
 

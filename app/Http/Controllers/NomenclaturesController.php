@@ -15,7 +15,6 @@ use App\Models\ObjectTypes;
 use App\Models\ReportTypes;
 use App\Models\Subdivision;
 
-
 class NomenclaturesController extends Controller
 {
     protected $UpdateStatus = 'free';
@@ -24,24 +23,10 @@ class NomenclaturesController extends Controller
 
     public function show() {
         $table_name = $_POST['table_name'];
+        $data = DB::table($table_name)->get();
 
-        if($table_name != 'subdivisions'){
-            $data = DB::table($table_name)->get();
-
-            foreach($data as $item) {
-                $item->active == 0 ? $item->active = 'Inactiv' : $item->active = 'Activ';
-            }
-        } else {
-            $data = DB::table('departments')
-                        ->join('subdivisions', 'subdivision_id', '=', 'subdivisions_id')
-                        ->select(['*', 'departments.active as active_department', 'subdivisions.active as active_subdivision',
-                                'departments.created_at as department_created_at', 'subdivisions.created_at as subdivision_created_at'])
-                        ->get();
-
-            foreach($data as $item) {
-                $item->active_department == 0 ? $item->active_department = 'Inactiv' : $item->active_department = 'Activ';
-                $item->active_subdivisio == 0 ? $item->active_subdivisio = 'Inactiv' : $item->active_subdivisio = 'Activ';
-            }
+        foreach($data as $item) {
+            $item->active == 0 ? $item->active = 'Inactiv' : $item->active = 'Activ';
         }
 
         return $data;
@@ -66,7 +51,7 @@ class NomenclaturesController extends Controller
                 case 'Temei examinare / Tipul cauzei':
                     $ActionType = ActionTypes::create([
                         'action_type' => $validatedData['action_type'],
-                        'abbreviation' => $validatedData['abbreviation'],
+                        'abbreviation' => $request['abbreviation'],
                         'active' => isset($_POST['active']) ? 1 : 0,
                     ]);
                     break;
@@ -88,7 +73,7 @@ class NomenclaturesController extends Controller
                 case 'Tipul obiectului':
                     $ObjectType = ObjectTypes::create([
                         'object_type' => $validatedData['object_type'],
-                        'abbreviation' => $validatedData['abbreviation'],
+                        'abbreviation' => $request['abbreviation'],
                         'active' => isset($_POST['active']) ? 1 : 0,
                     ]);
                     break;
@@ -96,41 +81,98 @@ class NomenclaturesController extends Controller
                 case 'Genul expertizei':
                     $ReportType = ReportTypes::create([
                         'report_type' => $validatedData['report_type'],
-                        'abbreviation' => $validatedData['abbreviation'],
+                        'abbreviation' => $request['abbreviation'],
                         'active' => isset($_POST['active']) ? 1 : 0,
                     ]);
                     break;
     
-                case 'Subdiviziuni / Unități':
-
+                case 'Subdiviziuni':
                     $Subdivision = Subdivision::create([
-                        'action_type' => $validatedData['action_type'],
-                        'abbreviation' => $validatedData['abbreviation'],
+                        'subdivision' => $validatedData['subdivision'],
+                        'abbreviation' => $request['abbreviation'],
                         'active' => isset($_POST['active']) ? 1 : 0,
                     ]);
 
-
-                    $Department = Department::create([
-                        'department' => $validatedData['department'],
-                        'abbreviation' => $validatedData['department_abbreviation'],
-                        'active' => isset($_POST['active']) ? 1 : 0,
-                        'subdivision_id' => $Subdivision['subdivisions_id']
+                    $dep = Department::create([
+                        'department' => null,
+                        'abbreviation' => null,
+                        'active' => 1,
+                        'subdivision_id' => $Subdivision['id']
                     ]);
                     break;
+
+                case 'Unitati':
+                    $existingDepartment = Department::all()->where('subdivision_id', '=', $validatedData['subdivision_select']);
+
+                    if(count($existingDepartment) > 1 ) {
+                        $Department = Department::create([
+                            'department' => $request['department'],
+                            'abbreviation' => $request['abbreviation'],
+                            'active' => isset($_POST['active']) ? 1 : 0,
+                            'subdivision_id' => $validatedData['subdivision_select']
+                        ]);
+                    } else {
+                        foreach ($existingDepartment as $item) {
+                            if(is_null($item['department']) && is_null($item['abbreviation'])) {
+
+                                $updatedDepartment = DB::table('departments')
+                                    ->where('departments_id','=', $item['departments_id'])
+                                    ->update([
+                                        'department' => $request['department'],
+                                        'abbreviation' => $request['abbreviation'],
+                                        'active' => isset($_POST['active']) ? 1 : 0 ]);
+                            } else {
+                                $Department = Department::create([
+                                    'department' => $request['department'],
+                                    'abbreviation' => $request['abbreviation'],
+                                    'active' => isset($_POST['active']) ? 1 : 0,
+                                    'subdivision_id' => $validatedData['subdivision_select']
+                                ]);
+                            }
+                        }
+                    }
+
+                    break;
             }
-
-               
             DB::commit();
-            return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'EmployeeRegisterSuccess', 'table'=>$request['checker']]);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'EmployeeRegisterError', 'table'=>$request['checker']]);
 
+            if ($request['checker'] != 'Unitati') {
+                return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'EmployeeRegisterSuccess', 
+                                'table'=>$request['checker']]);
+            } else {
+                return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'EmployeeRegisterSuccess', 
+                            'table'=>$request['checker'], 'subdivisions'=> Subdivision::all() ]);
+            }
+        } catch (\Exception $ex) {
+
+                dd($ex);
+            DB::rollBack();
+
+            if ($request['checker'] != 'Unitati') {
+                return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'EmployeeRegisterError', 
+                                'table'=>$request['checker']]);
+            } else {
+                return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'EmployeeRegisterError', 
+                            'table'=>$request['checker'], 'subdivisions'=> Subdivision::all() ]);
+            }
+       
             // throw $ex; de prelucrat erorile
         }
 
 
 
     }
+
+
+
+    public function getNomenclatureData() {
+        $nomenclature_id = $_POST['item_id'];
+        $DataBaseTable = $_POST['DBtable'];
+
+        $data = DB::table($DataBaseTable)->whereRaw($DataBaseTable . '_id = ' . $nomenclature_id)->get();
+
+        return $data ;
+    }
+
 
 }

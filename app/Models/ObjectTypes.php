@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ObjectTypes extends Model
 {
     protected $table = 'object_types';
+
+    protected $fillable = [
+        'object_type',
+        'abbreviation',
+        'active',
+    ];
 }

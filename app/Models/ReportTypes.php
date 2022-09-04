@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ReportTypes extends Model
 {
     protected $table = 'report_types';
+
+    protected $fillable = [
+        'report_type',
+        'abbreviation',
+        'active',
+    ];
 }

@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id('departments_id');
             $table->foreignId('subdivision_id')->constrained('subdivisions', 'subdivisions_id');
-            $table->string('department');
+            $table->string('department') -> nullable();
             $table->char('abbreviation', 20) -> nullable();
             $table->tinyInteger('active', 2) ->default(1);
             $table->timestamps();           
