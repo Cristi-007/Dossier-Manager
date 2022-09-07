@@ -1,5 +1,5 @@
 <div id="alert_popover">
-    <div class="wrapper">
+    <div class="alert-wrapper">
         <div class="content" id="alert-content">
 
         </div>

@@ -22,39 +22,6 @@
         <form action="" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <label for="subdivision">Instituție</label>
-            <select class="form-control" name="subdivision" id="subdivision" onchange="refineDepartments(value)"> 
-                <option value='0'> ..... </option>
-                @foreach ($subdivisions as $item)
-                    <option value={{ $item->subdivisions_id }} {{ old('subdivision') == $item->subdivisions_id ? 'selected' : '0' }}> 
-                        {{ ucwords(strtolower($item->subdivision)) }}
-                    </option>
-                @endforeach
-            </select>
-            <br>
-
-
-            <label for="department">Unitate</label>
-                <select class="form-control" name="department" id="department" aria-valuenow="0">
-            </select>
-            <br>
-
-            <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider round"></span>
-            </label>
-
-            <label for="case_officer_name">Nume</label>
-            <input class="form-control" type="text" id="case_officer_name" name="case_officer_name" placeholder="Nume" value="{{old('case_officer_name')}}">
-            <br> 
-            
-            <label for="case_officer_surname">Prenume</label>
-            <input class="form-control" type="text" id="case_officer_surname" name="case_officer_surname" 
-                    placeholder="Prenume / Familie" value="{{old('case_officer_surname')}}">
-            <br>
-            <hr class="main-panel-divider">
-        
-            
             <label for="dossier_number">Număr dosar</label>
             <input class="form-control" type="text" id="dossier_number" name="dossier_number" placeholder="34/12/1-C-" value="{{old('dossier_number')}}">
             <br>
@@ -71,6 +38,33 @@
             <label for="request_date">Data solicitării</label>
             <input class="form-control" type="date" id="request_date" name="request_date" value="{{ old('request_date', date('Y-m-d')) }}"
             min="2000-01-01" max="2050-12-31">
+            <br>
+
+            <hr class="main-panel-divider">
+
+            <label for="case_officer_name">Nume ordonator</label>
+            <input class="form-control" type="text" id="case_officer_name" name="case_officer_name" placeholder="Nume" value="{{old('case_officer_name')}}">
+            <br> 
+            
+            <label for="case_officer_surname">Prenume ordonator</label>
+            <input class="form-control" type="text" id="case_officer_surname" name="case_officer_surname" 
+                    placeholder="Prenume / Familie" value="{{old('case_officer_surname')}}">
+            <br>
+
+            <label for="subdivision">Instituție</label>
+            <select class="form-control" name="subdivision" id="subdivision" onchange="refineDepartments(value)"> 
+                <option value='0'> ..... </option>
+                @foreach ($subdivisions as $item)
+                    <option value={{ $item->subdivisions_id }} {{ old('subdivision') == $item->subdivisions_id ? 'selected' : '0' }}> 
+                        {{ ucwords(strtolower($item->subdivision)) }}
+                    </option>
+                @endforeach
+            </select>
+            <br>
+
+            <label for="department">Unitate</label>
+                <select class="form-control" name="department" id="department" aria-valuenow="0">
+            </select>
             <br>
 
             <hr class="main-panel-divider">

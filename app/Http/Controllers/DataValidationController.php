@@ -138,7 +138,6 @@ class DataValidationController extends Controller
     }
 
 
-
     public function nomenclatureValidation(Request $request) {
         switch ($request['checker']) {
             case 'Temei examinare / Tipul cauzei':

@@ -8,7 +8,7 @@
   }
 
 
-  .wrapper {
+  .alert-wrapper {
     display: table-cell;
     vertical-align: bottom;
     height: auto;
@@ -18,6 +18,11 @@
 
   .alert_default
   {
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid;
+    border-radius: .25rem;
     color: #333333;
     background-color: #f2f2f2;
     border-color: #cccccc;
@@ -46,6 +51,6 @@
   }
 
 
-  .alert-success {
+  .alert_success {
     color: #43b128;
   }

@@ -122,7 +122,6 @@ function showPaginatedEmployeeList(page){
 
 
 
-
 $(document).ready(function(e) {
 
     $(document).on('click', '.pagination a', function (event) {

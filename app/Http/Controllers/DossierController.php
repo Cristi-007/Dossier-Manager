@@ -276,7 +276,6 @@ class DossierController extends Controller
 
 
     public function showDossierList(Request $req) {
-
         if(isset($_GET['entryPerPage'])) {
             $entryPerPage = $_GET['entryPerPage'];
         } else {

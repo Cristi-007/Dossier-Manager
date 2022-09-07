@@ -97,12 +97,55 @@ function showDossierDetailedData(id) {
 
                 <input type="hidden" id="dossier_id" name="dossier_id" value="${element.dossiers_id}">
 
+
+                <div class="" id="dossier_number_container">
+                    <strong><label for="dossier_number">Număr dosar:</label></strong>
+                    <input class="form-control" type="text" id="dossier_number" name="dossier_number" value="${element.dossier_number}" disabled>
+                <br>
+                </div>
+
+                <div class="" id="dossier_date_container">
+                    <strong><label for="dossier_date">Data înregistrării:</label></strong>
+                    <input class="form-control" type="date" id="dossier_date" name="dossier_date" value="${element.dossier_date}"
+                        min="2000-01-01" max="2050-12-31" disabled>
+                <br>
+                </div>
+            
+                <div class="" id="request_no_container">
+                    <strong><label for="request_no">Număr solicitare:</label></strong>
+                    <input class="form-control" type="text" id="request_no" name="request_no" value="${element.request_number}" disabled>
+                <br>
+                </div>
+
+                <div class="" id="request_date_container">
+                    <strong><label for="request_date">Data solicitării:</label></strong>
+                    <input class="form-control" type="date" id="request_date" name="request_date" value="${element.request_date}"
+                        min="2000-01-01" max="2050-12-31" disabled>
+                <br>
+                </div>
+
+
+                <div class="" id="case_officer_name_container">
+                    <strong><label for="case_officer_name">Nume ordonator</label></strong>
+                    <input class="form-control" type="text" id="case_officer_name" 
+                            name="case_officer_name" value="${element.officer_name}" disabled>
+                <br> 
+                </div>
+                
+                <div class="" id="case_officer_surname_container">
+                    <strong><label for="case_officer_surname">Prenume ordonator</label></strong>
+                    <input class="form-control" type="text" id="case_officer_surname" 
+                            name="case_officer_surname" value="${element.officer_surname}" disabled>
+                <br>
+                </div>
+
+                
                 <div class="" id="subdivision_container">
                     <strong><label for="subdivision">Instituție:</label></strong>
                     <select class="form-control" name="subdivision" id="subdivision" onchange="refineDepartments(value)" disabled>
                         <option value='0'> ..... </option>
                             ${ htmlSubdivisions }
-                    </select>
+                </select>
                 <br>
                 </div>
 
@@ -115,46 +158,7 @@ function showDossierDetailedData(id) {
                 <br>
                 </div>
 
-                <div class="" id="case_officer_name_container">
-                    <strong><label for="case_officer_name">Nume</label></strong>
-                    <input class="form-control" type="text" id="case_officer_name" 
-                            name="case_officer_name" value="${element.officer_name}" disabled>
-                <br> 
-                </div>
                 
-                <div class="" id="case_officer_surname_container">
-                    <strong><label for="case_officer_surname">Prenume</label></strong>
-                    <input class="form-control" type="text" id="case_officer_surname" 
-                            name="case_officer_surname" value="${element.officer_surname}" disabled>
-                <br>
-                </div>
-
-                <div class="" id="dossier_number_container">
-                    <strong><label for="dossier_number">Număr dosar:</label></strong>
-                    <input class="form-control" type="text" id="dossier_number" name="dossier_number" value="${element.dossier_number}" disabled>
-                <br>
-                </div>
-
-                <div class="" id="dossier_date_container">
-                    <strong><label for="dossier_date">Data înregistrării:</label></strong>
-                    <input class="form-control" type="date" id="dossier_date" name="dossier_date" value="${element.dossier_date}"
-                            min="2000-01-01" max="2050-12-31" disabled>
-                <br>
-                </div>
-                
-                <div class="" id="request_no_container">
-                    <strong><label for="request_no">Număr solicitare:</label></strong>
-                    <input class="form-control" type="text" id="request_no" name="request_no" value="${element.request_number}" disabled>
-                <br>
-                </div>
-
-                <div class="" id="request_date_container">
-                    <strong><label for="request_date">Data solicitării:</label></strong>
-                    <input class="form-control" type="date" id="request_date" name="request_date" value="${element.request_date}"
-                            min="2000-01-01" max="2050-12-31" disabled>
-                <br>
-                </div>
-
                 <div class="" id="case_type_container">
                 <strong><label for="case_type">Temei examinare:</label></strong>
                 <select class="form-control" name="case_type" id="case_type" disabled>

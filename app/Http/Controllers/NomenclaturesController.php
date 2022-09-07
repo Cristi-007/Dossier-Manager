@@ -32,6 +32,7 @@ class NomenclaturesController extends Controller
         return $data;
     }
 
+    
 
     public function register(Request $request) {
         $DataValidation = new DataValidationController();

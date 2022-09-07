@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('pages.Dashboard.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 
@@ -66,6 +66,7 @@ Route::post('pagination', [App\Http\Controllers\DossierController::class, 'pagin
 Route::post('expertDetailedData', [App\Http\Controllers\EmployeeController::class, 'getDetailedEmployeeData']);
 Route::post('showNomenclature', [App\Http\Controllers\NomenclaturesController::class, 'show']);
 Route::post('getNomenclatureDetailedData', [App\Http\Controllers\NomenclaturesController::class, 'getNomenclatureData']);
+Route::get('test', [App\Http\Controllers\DashboardController::class, 'getCurrentUserData'])->name('testRoute');
 
 
 // INFO

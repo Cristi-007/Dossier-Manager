@@ -30,20 +30,22 @@
   <div class="sidebar-wrapper">
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('dashboard') }}">
+        <a class="nav-link" href="{{ route('testRoute') }}">
           <span class="sidebar-mini"> D </span>
           <span class="sidebar-normal">Dashboard </span>
         </a>
       </li>
 
+
       <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="" aria-expanded="true">
+        <a class="nav-link" data-bs-toggle="collapse" href="#admin-panel" id="collapse-parent" aria-expanded="false" aria-controls="admin-panel">
           <span class="sidebar-mini"> A </span>
           <span class="sidebar-normal">{{ __('Administrator') }}
             <b class="caret"></b>
           </span>
         </a>
-        <div class="collapse show" id="admin-panel">
+
+        <div class="collapse" id="admin-panel">
           <ul class="nav">
             <li class="nav-item">
               <a class="nav-link" href="{{ route('ShowEmployeeList') }}">
@@ -59,6 +61,7 @@
             </li>
           </ul>
         </div>
+
       </li>
 
 
@@ -81,6 +84,9 @@
     </ul>
   </div>
 </div>
+
+
+
 
 
 
