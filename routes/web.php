@@ -21,10 +21,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/dashboard', function () {
-    return view('pages.Dashboard.dashboard');
-})->middleware(['auth'])->name('dashboard');
-
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'getLoggedUserDossiers'])->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
@@ -66,7 +63,6 @@ Route::post('pagination', [App\Http\Controllers\DossierController::class, 'pagin
 Route::post('expertDetailedData', [App\Http\Controllers\EmployeeController::class, 'getDetailedEmployeeData']);
 Route::post('showNomenclature', [App\Http\Controllers\NomenclaturesController::class, 'show']);
 Route::post('getNomenclatureDetailedData', [App\Http\Controllers\NomenclaturesController::class, 'getNomenclatureData']);
-Route::get('test', [App\Http\Controllers\DashboardController::class, 'getCurrentUserData'])->name('testRoute');
 
 
 // INFO

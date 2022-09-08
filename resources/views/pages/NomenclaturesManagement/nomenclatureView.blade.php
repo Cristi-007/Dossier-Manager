@@ -11,7 +11,8 @@
         <div class="data-view-table">
             <div class="table-header">
                 <div class="nomenclature-select-container">
-                    <select class="form-select form-select-sm" name="nomenclature-select" id="nomenclature-select" onchange="showNomenclature(value)">
+                    <select class="form-select form-select-sm" name="nomenclature-select" id="nomenclature-select" 
+                            onchange="showNomenclature(value)">
                         <option value="0" selected>Selectați nomenclatorul...</option>
                         <option value="action_types">Temei examinare / Tipul cauzei</option>
                         <option value="examination_types">Tipul examinării</option>

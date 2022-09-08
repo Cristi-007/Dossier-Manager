@@ -3,14 +3,15 @@
 
 @section('content')
 <div class="main-panel-data-header" id="main-panel-data-header">
-    <h1>Welcome </h1> 
+    <h1>Welcome {{ $user }}</h1> 
 </div>
 
 <div class="main-panel-content">
     <div class="data-view-container">
         <div class="data-view-table">
+            <br>
             <div id="paginatedTable">
-                @include('pages.Dashboard.dashboardPaginatedTable')
+                @include('pages.DossierManagement.dossierPaginatedTable')
             </div>
         </div>
     </div>

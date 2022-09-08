@@ -31,6 +31,7 @@
         <script src="{{ asset('js/notification.js') }}"></script>
         <script src="{{ asset('js/employee_management.js') }}"></script>
         <script src="{{ asset('js/nomenclatures_manager.js') }}"></script>
+        <script src="{{ asset('js/general.js') }}"></script>
 
     </head>
     <body class="font-sans antialiased">

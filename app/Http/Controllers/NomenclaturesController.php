@@ -26,6 +26,7 @@ class NomenclaturesController extends Controller
         $data = DB::table($table_name)->get();
 
         foreach($data as $item) {
+            $item->created_at = date('Y-m-d', strtotime($item->created_at));
             $item->active == 0 ? $item->active = 'Inactiv' : $item->active = 'Activ';
         }
 
@@ -171,6 +172,11 @@ class NomenclaturesController extends Controller
         $DataBaseTable = $_POST['DBtable'];
 
         $data = DB::table($DataBaseTable)->whereRaw($DataBaseTable . '_id = ' . $nomenclature_id)->get();
+
+        // foreach($data as $item) {
+        //     $item->created_at = date('Y-m-d', strtotime($item->created_at));
+        //     $item->active == 0 ? $item->active = 'Inactiv' : $item->active = 'Activ';
+        // }
 
         return $data ;
     }

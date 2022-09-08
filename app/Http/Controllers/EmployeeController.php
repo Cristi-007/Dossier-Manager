@@ -151,6 +151,7 @@ class EmployeeController extends Controller
 
 
     private function getEmployee($where) {
+        $userss = new User();
 
         $data = DB::table('experts')
             ->join('users', 'id', '=', 'user_id')
@@ -160,12 +161,13 @@ class EmployeeController extends Controller
             ->paginate(10);
 
         foreach($data as $item) {
+            $item->user_created_at = date('Y-m-d', strtotime($item->user_created_at));
+            $item->expert_created_at = date('Y-m-d', strtotime($item->expert_created_at));
             $item->expert_name = ucwords(strtolower($item->expert_name));
             $item->expert_surname = ucwords(strtolower($item->expert_surname));
             $item->function = ucwords(strtolower($item->function));
             $item->active == 0 ? $item->active = 'Inactiv' : $item->active = 'Activ';
             $item->novice == 0 ? $item->novice = 'Nu' : $item->novice = 'Da';
-
             $item->name = ucwords(strtolower($item->name));
         }
 

@@ -270,7 +270,13 @@ class DossierController extends Controller
 
     public function getDepartments(){
         $id = $_POST['subdivision_id'];
-        $departments = Department::all()->where("subdivision_id", "=", $id)->sortBy('abbreviation');
+        $departments = DB::table('departments')->where("subdivision_id", "=", $id)->get()->sortBy('abbreviation');
+
+        foreach($departments as $item) {
+            $item->created_at = date('Y-m-d', strtotime($item->created_at));
+            $item->active == 0 ? $item->active = 'Inactiv' : $item->active = 'Activ';
+        }
+
         return $departments;
     }
 

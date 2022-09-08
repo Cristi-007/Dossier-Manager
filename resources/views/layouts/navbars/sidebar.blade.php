@@ -30,7 +30,7 @@
   <div class="sidebar-wrapper">
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('testRoute') }}">
+        <a class="nav-link" href="{{ route('dashboard') }}">
           <span class="sidebar-mini"> D </span>
           <span class="sidebar-normal">Dashboard </span>
         </a>

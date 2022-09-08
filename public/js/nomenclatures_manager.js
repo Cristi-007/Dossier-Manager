@@ -6,15 +6,13 @@ function showNomenclature(type) {
             type: 'POST',
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: { table_name: type },
-    
-            beforeSend: function() {
-                $('#loader').show();
-            },
 
             success: function (data) {
                 let tableColumnNames = "";
                 let tableData = "";
                 let departmentColumnNames = "";
+
+                
 
                 switch (type) {
                     case "action_types":
@@ -93,57 +91,57 @@ function showNomenclature(type) {
                         break;
                 }
 
-
+                
                 $.each(data, function(index, element){
                     switch (type) {
                         case "action_types":
-                            tableData += `<tr onclick="nomenclatureDetailedData(${ element.action_types_id, type })">
+                            tableData += `<tr onclick="nomenclatureDetailedData(${ element.action_types_id }, '${ type}')">
                                     <td class="table-row">${ index+1 }</td>
                                     <td class="table-row">${ element.action_type }</td>
                                     <td class="table-row">${ element.abbreviation }</td>
                                     <td class="table-row">${ element.active }</td>
-                                    <td class="table-row">${ element.creted_at }</td>
+                                    <td class="table-row">${ element.created_at }</td>
                                 </tr>`
                             break;
                     
                         case "examination_types":
-                            tableData += `<tr onclick="nomenclatureDetailedData(${ element.examination_types_id, type })">
+                            tableData += `<tr onclick="nomenclatureDetailedData(${ element.examination_types_id }, '${ type}')">
                                     <td class="table-row">${ index+1 }</td>
                                     <td class="table-row">${ element.examination_type }</td>
                                     <td class="table-row">${ element.active }</td>
-                                    <td class="table-row">${ element.creted_at }</td>
+                                    <td class="table-row">${ element.created_at }</td>
                                 </tr>`
                             break;
     
     
                         case "expertise_types":
-                            tableData += `<tr onclick="nomenclatureDetailedData(${ element.examination_types_id, type })">
+                            tableData += `<tr onclick="nomenclatureDetailedData(${ element.expertise_types_id }, '${ type}')">
                                     <td class="table-row">${ index+1 }</td>
                                     <td class="table-row">${ element.expertise_type }</td>
                                     <td class="table-row">${ element.active }</td>
-                                    <td class="table-row">${ element.creted_at }</td>
+                                    <td class="table-row">${ element.created_at }</td>
                                 </tr>`
                             break;
     
     
                         case "object_types":
-                            tableData += `<tr onclick="nomenclatureDetailedData(${ element.object_types_id, type })">
+                            tableData += `<tr onclick="nomenclatureDetailedData(${ element.object_types_id }, '${ type}')">
                                     <td class="table-row">${ index+1 }</td>
                                     <td class="table-row">${ element.object_type }</td>
                                     <td class="table-row">${ element.abbreviation }</td>
                                     <td class="table-row">${ element.active }</td>
-                                    <td class="table-row">${ element.creted_at }</td>
+                                    <td class="table-row">${ element.created_at }</td>
                                 </tr>`
                             break;
     
     
                         case "report_types":
-                            tableData += `<tr onclick="nomenclatureDetailedData(${ element.reports_id, type })">
+                            tableData += `<tr onclick="nomenclatureDetailedData(${ element.report_types_id }, '${ type}')">
                                     <td class="table-row">${ index+1 }</td>
                                     <td class="table-row">${ element.report_type }</td>
                                     <td class="table-row">${ element.abbreviation }</td>
                                     <td class="table-row">${ element.active }</td>
-                                    <td class="table-row">${ element.creted_at }</td>
+                                    <td class="table-row">${ element.created_at }</td>
                                 </tr>`
                             break;
     
@@ -154,9 +152,9 @@ function showNomenclature(type) {
                                     <td class="table-row">${ element.subdivision }</td>
                                     <td class="table-row">${ element.abbreviation }</td>
                                     <td class="table-row">${ element.active }</td>
-                                    <td class="table-row">${ element.creted_at }</td>
+                                    <td class="table-row">${ element.created_at }</td>
                                     <td class="table-row"><a class="edit-table-btn" title="Edit" data-toggle="tooltip" 
-                                                            onclick='nomenclatureDetailedData(${ element.subdivisions_id, type })'>
+                                                            onclick="nomenclatureDetailedData(${ element.subdivisions_id }, '${ type }')">
                                             <i class="material-icons">&#xE254;</i></a>
                                     </td>
                                 </tr>`;
@@ -245,7 +243,6 @@ function showNomenclature(type) {
 }
 
 
-
 function refinedDepartmentsNomenclature(id) {
 
        $.ajax({
@@ -253,28 +250,23 @@ function refinedDepartmentsNomenclature(id) {
             type: 'POST',
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: { subdivision_id: id },
-    
-            beforeSend: function() {
-                $('#loader').show();
-            },
 
             success: function (data) {
                 let tableData = "";
                 let i = 1;
 
                 $.each(data, function(index, element){
-
                     if (element['department'] === null && element['abbreviation'] === null) {
 
                     } else {
-                        tableData += `<tr onclick="">
+                        tableData += `<tr>
                             <td class="table-row">${ i++ }</td>
                             <td class="table-row">${ element.department }</td>
                             <td class="table-row">${ element.abbreviation }</td>
-                            <td class="table-row">${ element.active == 0 ? 'Inactiv' : 'Activ'}</td>
-                            <td class="table-row">${ element.creted_at }</td>
+                            <td class="table-row">${ element.active }</td>
+                            <td class="table-row">${ element.created_at }</td>
                             <td class="table-row"><a class="edit" title="Edit" data-toggle="tooltip" 
-                                                    onclick='nomenclatureDetailedData(${ element.subdivisions_id, 'departments' })'>
+                                                    onclick="nomenclatureDetailedData(${ element.departments_id }, 'departments')">
                                                     <i class="material-icons">&#xE254;</i></a>
                         </td> </tr>`;
                     }
@@ -287,8 +279,8 @@ function refinedDepartmentsNomenclature(id) {
 }
 
 
-function nomenclatureDetailedData(id, test) {
-    
+function nomenclatureDetailedData(id, type) {
+ 
     $.ajax({
         url: 'getNomenclatureDetailedData',
         type: 'POST',
@@ -298,13 +290,12 @@ function nomenclatureDetailedData(id, test) {
             DBtable: document.getElementById('nomenclature-select').value
         },
 
-        beforeSend: function() {
-            $('#loader').show();
-        },
-
         success: function(result) {
+            $.each(result, function(index, element){
+                data = element
+            })
 
-            console.log(result)
+            console.log(data)
 
             // let test = document.getElementById('nomenclature-select').value;
 
@@ -312,33 +303,55 @@ function nomenclatureDetailedData(id, test) {
             $('#modal-title').empty()
             $('#data-container').empty()
 
-            $('#modal-title').append(`${result[0].subdivision}`)
 
-
-            switch (test) {
+            switch (type) {
                 case "action_types":
-                   
+                    $('#modal-title').append(`${data.action_type}`)
+                    $('#data-container').append(`
+                        <input type="hidden" id="expert_id" name="expert_id" value="${data.action_types_id}">
+            
+                        <div class="" id="action_type_container">
+                            <strong><label for="action_type">Tipul cauzei:</label></strong>
+                            <input class="form-control" type="text" id="action_type" 
+                                name="action_type" value="${data.action_type}">
+                        <br> 
+                        </div>
+                            
+                        <div class="" id="abbreviation_container">
+                            <strong><label for="abbreviation">Prescurtare:</label></strong>
+                            <input class="form-control" type="text" id="abbreviation" 
+                                name="abbreviation" value="${data.abbreviation}">
+                        <br>
+                        </div>
 
+                        <div class="" id="active_container">
+                        <strong><label for="active">Stare:</label></strong>
+                        <select class="form-control" name="active" id="active">
+                            <option value="1" ${data.active == 'Activ' ? 'selected': ''}>Activ</option>
+                            <option value="0" ${data.active == 'Inactiv' ? 'selected': ''}>Inactiv</option>
+                        </select>
+                        <br>
+                        </div>`)
 
                     break;
             
                 case "examination_types":
-
+                    console.log('examination_types')
                     break;
 
 
                 case "expertise_types":
-
+                    console.log('expertise_types')
                     break;
 
 
                 case "object_types":
-
+                    console.log('object_types')
                     break;
 
 
                 case "report_types":
-
+                    console.log('report_types')
                     break;
 
 
