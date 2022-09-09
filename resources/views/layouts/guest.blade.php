@@ -12,6 +12,7 @@
 
         <!-- Styles -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/authPage.css') }}">
         <link rel="stylesheet" href="{{ asset('css/main-panel.css') }}">
@@ -19,11 +20,13 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/general.js') }}"></script>
+        
     </head>
     <body class="login-body">
 
         {{-- temporary --}}
-        @if (Route::has('login'))
+        {{-- @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             @auth
             @else
@@ -34,7 +37,7 @@
                 @endif
             @endauth
         </div>
-        @endif
+        @endif --}}
 
 
         <div class="font-sans text-gray-900 antialiased login-div">

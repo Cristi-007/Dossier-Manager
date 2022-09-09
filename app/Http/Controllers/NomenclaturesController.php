@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataValidationController;
 
 use App\Models\ActionTypes;
@@ -34,7 +33,6 @@ class NomenclaturesController extends Controller
     }
 
     
-
     public function register(Request $request) {
         $DataValidation = new DataValidationController();
 
@@ -139,10 +137,10 @@ class NomenclaturesController extends Controller
             DB::commit();
 
             if ($request['checker'] != 'Unitati') {
-                return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'EmployeeRegisterSuccess', 
+                return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'NomenclatureRegisterSuccess', 
                                 'table'=>$request['checker']]);
             } else {
-                return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'EmployeeRegisterSuccess', 
+                return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'NomenclatureRegisterSuccess', 
                             'table'=>$request['checker'], 'subdivisions'=> Subdivision::all() ]);
             }
         } catch (\Exception $ex) {
@@ -151,10 +149,10 @@ class NomenclaturesController extends Controller
             DB::rollBack();
 
             if ($request['checker'] != 'Unitati') {
-                return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'EmployeeRegisterError', 
+                return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'NomenclatureRegisterError', 
                                 'table'=>$request['checker']]);
             } else {
-                return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'EmployeeRegisterError', 
+                return view('/pages.NomenclaturesManagement.nomenclatureRegister', ['notificationCheck' => 'NomenclatureRegisterError', 
                             'table'=>$request['checker'], 'subdivisions'=> Subdivision::all() ]);
             }
        
@@ -166,6 +164,116 @@ class NomenclaturesController extends Controller
     }
 
 
+    public function update(Request $request) {
+
+        if(isset($request['action_type'])) {
+            try {
+                $updatedData = DB::table('action_types')
+                        ->where("action_types_id", $request['action_type_id'])
+                        ->update([
+                                "action_type" => $request["action_type"],
+                                "abbreviation" => $request["abbreviation"],
+                                "active" => $request["active"]
+                        ]);
+            } catch (\Exception $ex) {
+                dd($ex);
+            }
+        
+        }
+
+        if(isset($request['examination_type'])) {
+            try {
+                $updatedData = DB::table('examination_types')
+                        ->where("examination_types_id", $request['examination_type_id'])
+                        ->update([
+                                "examination_type" => $request["examination_type"],
+                                "active" => $request["active"]
+                        ]);
+            } catch (\Exception $ex) {
+                dd($ex);
+            }
+        }
+
+        if(isset($request['expertise_type'])) {
+            try {
+                $updatedData = DB::table('expertise_types')
+                        ->where("expertise_types_id", $request['expertise_type_id'])
+                        ->update([
+                                "expertise_type" => $request["expertise_type"],
+                                "active" => $request["active"]
+                        ]);
+            } catch (\Exception $ex) {
+                dd($ex);
+            }
+        }
+
+        if(isset($request['object_type'])) {
+            try {
+                $updatedData = DB::table('object_types')
+                        ->where("object_types_id", $request['object_type_id'])
+                        ->update([
+                                "object_type" => $request["object_type"],
+                                "abbreviation" => $request["abbreviation"],
+                                "active" => $request["active"]
+                        ]);
+            } catch (\Exception $ex) {
+                dd($ex);
+            }
+        }
+
+        if(isset($request['report_type'])) {
+            try {
+                $updatedData = DB::table('report_types')
+                        ->where("report_types_id", $request['report_type_id'])
+                        ->update([
+                                "report_type" => $request["report_type"],
+                                "abbreviation" => $request["abbreviation"],
+                                "active" => $request["active"]
+                        ]);
+            } catch (\Exception $ex) {
+                dd($ex);
+            }
+        }
+
+        if(isset($request['subdivision'])) {
+            try {
+                $updatedData = DB::table('subdivisions')
+                        ->where("subdivisions_id", $request['subdivision_id'])
+                        ->update([
+                                "subdivision" => $request["subdivision"],
+                                "abbreviation" => $request["abbreviation"],
+                                "active" => $request["active"]
+                        ]);
+            } catch (\Exception $ex) {
+                dd($ex);
+            }
+        }
+
+        if(isset($request['department'])) {
+            try {
+                $updatedData = DB::table('departments')
+                        ->where("departments_id", $request['department_id'])
+                        ->update([
+                                "department" => $request["department"],
+                                "abbreviation" => $request["abbreviation"],
+                                "active" => $request["active"]
+                        ]);
+            } catch (\Exception $ex) {
+                dd($ex);
+            }
+        }
+        
+        
+        if($updatedData == 1) {
+            $this->UpdateStatus = "NomenclatureUpdateSuccess";
+        } else{
+            $this->UpdateStatus = "NomenclatureUpdateError";
+        }
+        
+
+        return view('pages.NomenclaturesManagement.nomenclatureView', ['UpdateStatus' => $this->UpdateStatus]);
+    }
+
 
     public function getNomenclatureData() {
         $nomenclature_id = $_POST['item_id'];
@@ -173,10 +281,6 @@ class NomenclaturesController extends Controller
 
         $data = DB::table($DataBaseTable)->whereRaw($DataBaseTable . '_id = ' . $nomenclature_id)->get();
 
-        // foreach($data as $item) {
-        //     $item->created_at = date('Y-m-d', strtotime($item->created_at));
-        //     $item->active == 0 ? $item->active = 'Inactiv' : $item->active = 'Activ';
-        // }
 
         return $data ;
     }

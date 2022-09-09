@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12" id="modal-buttons-container">
                         <button type="submit" class="register-button update-btn update-btn-active" id="update-employee-btn" 
-                                onclick="">Save</button>
+                                >Save</button>
                     </div>
                 </div>
             </div>

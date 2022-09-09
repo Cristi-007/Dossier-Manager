@@ -148,7 +148,7 @@
             <textarea class="form-control" name="notes" id="notes" placeholder="....." >{{old("notes")}}</textarea>
             <br>
 
-            <input type="hidden" id="test-id" value="{{$notificationCheck}}">
+            <input type="hidden" id="register-check" value="{{$notificationCheck}}">
             <button type="submit" class="register-button" id="submit">Integistreaza</button>
         </form>
     </div>

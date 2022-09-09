@@ -12,8 +12,40 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link href="" :active="request()->routeIs(request()->route()->getName())">
+                        @switch(request()->route()->getName())
+                            @case ('dashboard')
+                                {{ __('Dashboard') }}
+                                @break
+
+                            @case ('ShowDossierList')
+                                {{ __('Vizualizare Dosare') }}
+                                @break
+
+                            @case ('NewDossiser')
+                                {{ __('Înregistrare Dosar') }}
+                                @break
+
+                            @case ('ShowEmployeeList')
+                                {{ __('Manager Angajați') }}
+                                @break
+
+                            @case ('RegisterEmployeeView')
+                                {{ __('Manager Angajați') }}
+                                @break
+
+                            @case ('NomenclaturesView')
+                                {{ __('Manager Nomenclatoare') }}
+                                @break
+
+                            @case ('NomenclaturesRegisterView')
+                                {{ __('Manager Nomenclatoare') }}
+                                @break
+                            
+                            @default
+                                {{request()->route()->getName()}}
+                                @break   
+                        @endswitch
                     </x-nav-link>
                 </div>
             </div>

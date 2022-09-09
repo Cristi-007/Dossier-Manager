@@ -12,8 +12,6 @@ function showNomenclature(type) {
                 let tableData = "";
                 let departmentColumnNames = "";
 
-                
-
                 switch (type) {
                     case "action_types":
                         tableColumnNames += `<tr>
@@ -182,8 +180,6 @@ function showNomenclature(type) {
                             ${ tableColumnNames }
                         </thead>
                     <tbody class="table-body" id="show-subdivisions-table-body">
-                        <input type="hidden" id="update-check" value="{UpdateStatus}">
-                        <input type="hidden" id="routeAction" value="{routeAction}">
                             ${ tableData }
                     </tbody> </table> </div> <br> <br>
                     
@@ -222,8 +218,6 @@ function showNomenclature(type) {
                             ${ tableColumnNames }
                         </thead>
                     <tbody class="table-body" id="show-nomenclatures-table-body">
-                        <input type="hidden" id="update-check" value="{UpdateStatus}">
-                        <input type="hidden" id="routeAction" value="{routeAction}">
                             ${ tableData }
                     </tbody> </table> </div> <br> <br>`;
                 }
@@ -287,7 +281,7 @@ function nomenclatureDetailedData(id, type) {
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         data: { 
             item_id: id,
-            DBtable: document.getElementById('nomenclature-select').value
+            DBtable: type,
         },
 
         success: function(result) {
@@ -295,20 +289,15 @@ function nomenclatureDetailedData(id, type) {
                 data = element
             })
 
-            console.log(data)
-
-            // let test = document.getElementById('nomenclature-select').value;
-
             $('#ModalShow').modal("show")
             $('#modal-title').empty()
             $('#data-container').empty()
-
 
             switch (type) {
                 case "action_types":
                     $('#modal-title').append(`${data.action_type}`)
                     $('#data-container').append(`
-                        <input type="hidden" id="expert_id" name="expert_id" value="${data.action_types_id}">
+                        <input type="hidden" id="action_type_id" name="action_type_id" value="${data.action_types_id}">
             
                         <div class="" id="action_type_container">
                             <strong><label for="action_type">Tipul cauzei:</label></strong>
@@ -327,8 +316,8 @@ function nomenclatureDetailedData(id, type) {
                         <div class="" id="active_container">
                         <strong><label for="active">Stare:</label></strong>
                         <select class="form-control" name="active" id="active">
-                            <option value="1" ${data.active == 'Activ' ? 'selected': ''}>Activ</option>
-                            <option value="0" ${data.active == 'Inactiv' ? 'selected': ''}>Inactiv</option>
+                            <option value="1" ${data.active === 1 ? 'selected': ''}>Activ</option>
+                            <option value="0" ${data.active === 0 ? 'selected': ''}>Inactiv</option>
                         </select>
                         <br>
                         </div>`)
@@ -336,120 +325,172 @@ function nomenclatureDetailedData(id, type) {
                     break;
             
                 case "examination_types":
-                    console.log('examination_types')
+                    $('#modal-title').append(`${data.examination_type}`)
+                    $('#data-container').append(`
+                        <input type="hidden" id="examination_type_id" name="examination_type_id" value="${data.examination_types_id}">
+            
+                        <div class="" id="examination_type_container">
+                            <strong><label for="examination_type">Tipul examinării:</label></strong>
+                            <input class="form-control" type="text" id="examination_type" 
+                                name="examination_type" value="${data.examination_type}">
+                        <br> 
+                        </div>
+
+                        <div class="" id="active_container">
+                        <strong><label for="active">Stare:</label></strong>
+                        <select class="form-control" name="active" id="active">
+                            <option value="1" ${data.active === 1 ? 'selected': ''}>Activ</option>
+                            <option value="0" ${data.active === 0 ? 'selected': ''}>Inactiv</option>
+                        </select>
+                        <br>
+                        </div>`)
                     break;
 
 
                 case "expertise_types":
-                    console.log('expertise_types')
+                    $('#modal-title').append(`${data.expertise_type}`)
+                    $('#data-container').append(`
+                        <input type="hidden" id="expertise_type_id" name="expertise_type_id" value="${data.expertise_types_id}">
+            
+                        <div class="" id="expertise_type_container">
+                            <strong><label for="expertise_type">Clasificarea expertizei:</label></strong>
+                            <input class="form-control" type="text" id="expertise_type" 
+                                name="expertise_type" value="${data.expertise_type}">
+                        <br> 
+                        </div>
+
+                        <div class="" id="active_container">
+                        <strong><label for="active">Stare:</label></strong>
+                        <select class="form-control" name="active" id="active">
+                            <option value="1" ${data.active === 1 ? 'selected': ''}>Activ</option>
+                            <option value="0" ${data.active === 0 ? 'selected': ''}>Inactiv</option>
+                        </select>
+                        <br>
+                        </div>`)
                     break;
 
 
                 case "object_types":
-                    console.log('object_types')
+                    $('#modal-title').append(`${data.object_type}`)
+                    $('#data-container').append(`
+                        <input type="hidden" id="object_type_id" name="object_type_id" value="${data.object_types_id}">
+            
+                        <div class="" id="object_type_container">
+                            <strong><label for="object_type">Tipul obiectului:</label></strong>
+                            <input class="form-control" type="text" id="object_type" 
+                                name="object_type" value="${data.object_type}">
+                        <br> 
+                        </div>
+                            
+                        <div class="" id="abbreviation_container">
+                            <strong><label for="abbreviation">Prescurtare:</label></strong>
+                            <input class="form-control" type="text" id="abbreviation" 
+                                name="abbreviation" value="${data.abbreviation}">
+                        <br>
+                        </div>
+
+                        <div class="" id="active_container">
+                        <strong><label for="active">Stare:</label></strong>
+                        <select class="form-control" name="active" id="active">
+                            <option value="1" ${data.active === 1 ? 'selected': ''}>Activ</option>
+                            <option value="0" ${data.active === 0 ? 'selected': ''}>Inactiv</option>
+                        </select>
+                        <br>
+                        </div>`)
                     break;
 
 
                 case "report_types":
-                    console.log('report_types')
+                    $('#modal-title').append(`${data.report_type}`)
+                    $('#data-container').append(`
+                        <input type="hidden" id="report_type_id name="report_type_id" value="${data.report_types_id}">
+            
+                        <div class="" id="report_type_container">
+                            <strong><label for="report_type">Genul expertizei:</label></strong>
+                            <input class="form-control" type="text" id="report_type" 
+                                name="report_type" value="${data.report_type}">
+                        <br> 
+                        </div>
+                            
+                        <div class="" id="abbreviation_container">
+                            <strong><label for="abbreviation">Prescurtare:</label></strong>
+                            <input class="form-control" type="text" id="abbreviation" 
+                                name="abbreviation" value="${data.abbreviation}">
+                        <br>
+                        </div>
+
+                        <div class="" id="active_container">
+                        <strong><label for="active">Stare:</label></strong>
+                        <select class="form-control" name="active" id="active">
+                            <option value="1" ${data.active === 1 ? 'selected': ''}>Activ</option>
+                            <option value="0" ${data.active === 0 ? 'selected': ''}>Inactiv</option>
+                        </select>
+                        <br>
+                        </div>`)
                     break;
 
 
                 case "subdivisions":
-                    $('#modal-title').append(`${result[0].subdivision}`)
-
+                    $('#modal-title').append(`${data.subdivision}`)
                     $('#data-container').append(`
-                        <input type="hidden" id="expert_id" name="expert_id" value="${result[0].experts_id}">
-                
-                        <div class="" id="expert_name_container">
-                            <strong><label for="expert_name">Nume expert:</label></strong>
-                            <input class="form-control" type="text" id="expert_name" 
-                                    name="expert_name" value="${result[0].expert_name}">
-                                    <br> 
-                                    </div>
-                                
-                                    <div class="" id="expert_surname_container">
-                                        <strong><label for="expert_surname">Prenume expert:</label></strong>
-                                        <input class="form-control" type="text" id="expert_surname" 
-                                            name="expert_surname" value="${result[0].expert_surname}">
-                                    <br>
-                                    </div>
-                
-                                    <div class="" id="function_container">
-                                        <strong><label for="function">Funcția:</label></strong>
-                                        <input class="form-control" type="text" id="function" name="function" value="${result[0].function}">
-                                    <br>
-                                    </div>
-                
-                                    <div class="" id="novice_container">
-                                    <strong><label for="novice">Stagiar:</label></strong>
-                                    <select class="form-control" name="novice" id="novice">
-                                        <option value="1" ${result[0].novice == 'Da' ? 'selected': ''}>Da</option>
-                                        <option value="0" ${result[0].novice == 'Nu' ? 'selected': ''}>Nu</option>
-                                    </select>
-                                    <br>
-                                    </div>
-                
-                                    <div class="" id="active_container">
-                                    <strong><label for="active">Stare:</label></strong>
-                                    <select class="form-control" name="active" id="active">
-                                        <option value="1" ${result[0].active == 'Activ' ? 'selected': ''}>Activ</option>
-                                        <option value="0" ${result[0].active == 'Inactiv' ? 'selected': ''}>Inactiv</option>
-                                    </select>
-                                    <br>
-                                    </div>
-                                    </div> `)
+                        <input type="hidden" id="subdivision_id" name="subdivision_id" value="${data.subdivisions_id}">
+            
+                        <div class="" id="subdivision_container">
+                            <strong><label for="subdivision">Denumire subdiviziune:</label></strong>
+                            <input class="form-control" type="text" id="subdivision" 
+                                name="subdivision" value="${data.subdivision}">
+                        <br> 
+                        </div>
+                            
+                        <div class="" id="abbreviation_container">
+                            <strong><label for="abbreviation">Prescurtare:</label></strong>
+                            <input class="form-control" type="text" id="abbreviation" 
+                                name="abbreviation" value="${data.abbreviation}">
+                        <br>
+                        </div>
+
+                        <div class="" id="active_container">
+                        <strong><label for="active">Stare:</label></strong>
+                        <select class="form-control" name="active" id="active">
+                            <option value="1" ${data.active === 1 ? 'selected': ''}>Activ</option>
+                            <option value="0" ${data.active === 0 ? 'selected': ''}>Inactiv</option>
+                        </select>
+                        <br>
+                        </div>`)
                     break;
+
+                    case "departments":
+                        $('#modal-title').append(`${data.department}`)
+                        $('#data-container').append(`
+                            <input type="hidden" id="department_id" name="department_id" value="${data.departments_id}">
+                
+                            <div class="" id="department_container">
+                                <strong><label for="department">Denumire subdiviziune:</label></strong>
+                                <input class="form-control" type="text" id="department" 
+                                    name="department" value="${data.department}">
+                            <br> 
+                            </div>
+                                
+                            <div class="" id="abbreviation_container">
+                                <strong><label for="abbreviation">Prescurtare:</label></strong>
+                                <input class="form-control" type="text" id="abbreviation" 
+                                    name="abbreviation" value="${data.abbreviation}">
+                            <br>
+                            </div>
+    
+                            <div class="" id="active_container">
+                            <strong><label for="active">Stare:</label></strong>
+                            <select class="form-control" name="active" id="active">
+                                <option value="1" ${data.active === 1 ? 'selected': ''}>Activ</option>
+                                <option value="0" ${data.active === 0 ? 'selected': ''}>Inactiv</option>
+                            </select>
+                            <br>
+                            </div>`)
+                        break;
 
                 default:
                     break;
             }
-
-
-
-
-            // switch (section) {
-            //     case 'expert':
-            //         
-            //         break;
-            
-            //     case 'user':
-            //         $('#modal-title').append(`${result.data[0].username}`)
-            //         $('#data-container').append(`
-            //             <input type="hidden" id="user_id" name="user_id" value="${result.data[0].id}">
-        
-            //                 <div class="" id="name_container">
-            //                     <strong><label for="name">Nume:</label></strong>
-            //                     <input class="form-control" type="text" id="name" 
-            //                         name="name" value="${result.data[0].name}">
-            //                 <br> 
-            //                 </div>
-                        
-            //                 <div class="" id="username_container">
-            //                     <strong><label for="username">Nume de utilizator:</label></strong>
-            //                     <input class="form-control" type="text" id="username" 
-            //                         name="username" value="${result.data[0].username}">
-            //                 <br>
-            //                 </div>
-        
-            //                 <div class="" id="email_container">
-            //                     <strong><label for="function">Email:</label></strong>
-            //                     <input class="form-control" type="text" id="email" name="email" value="${result.data[0].email}">
-            //                 <br>
-            //                 </div>
-        
-            //                 <div class="" id="accesstype_container">
-            //                 <strong><label for="accesstype">Tipul de acces în sistem:</label></strong>
-            //                 <select class="form-control" name="accesstype" id="accesstype">
-            //                     <option value="Administrator" ${result.data[0].accesstype == 'Administrator' ? 'selected': ''}>Administrator</option>
-            //                     <option value="Worker" ${result.data[0].accesstype == 'Worker' ? 'selected': ''}>Worker</option>
-            //                     <option value="Utilizator" ${result.data[0].accesstype == 'User' ? 'selected': ''}>Utilizator</option>
-            //                 </select>
-            //                 <br>
-            //                 </div>
-            //                 </div> `)
-            //         break;
-            // }  
         },
     })
 }

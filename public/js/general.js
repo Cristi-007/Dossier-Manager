@@ -34,6 +34,8 @@ function showPaginatedTables(page) {
     })
 }
 
+
+
 $(document).ready(function(e) {
 
     $(document).on('click', '.pagination a', function (event) {
@@ -42,5 +44,6 @@ $(document).ready(function(e) {
         showPaginatedTables(pageNumber);
     });
 
+    
  
 })

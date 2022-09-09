@@ -49,23 +49,6 @@ class DashboardController extends Controller
                         'UpdateStatus' => 'free', 'routeAction'=>$routeAction, 
                         'user' => $userExpert->expert_name . ' ' . $userExpert->expert_surname]);
         }
-
-
-
     }
-
-
-    // public function getUserData()
-    // {
-    //     $loggedUser = Auth::user();
-    //     $userExpert = DB::table('experts')->where('user_id', '=', $loggedUser->id)->get();
-
-    //     foreach($userExpert as $item){
-    //         $userExpert = $item;
-    //     }
-
-    //     return $userExpert->expert_name . ' ' . $userExpert->expert_surname;
-    // }
-
 
 }

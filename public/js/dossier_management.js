@@ -354,7 +354,7 @@ $(document).ready(function(e) {
     $(document).on('change', '#entries-per-page', function(event) {
         event.preventDefault();
         var pageNumber = 1;
-        showPaginatedDossierList(pageNumber);
+        showPaginatedTables(pageNumber);
     })
      
 })

@@ -151,8 +151,6 @@ class EmployeeController extends Controller
 
 
     private function getEmployee($where) {
-        $userss = new User();
-
         $data = DB::table('experts')
             ->join('users', 'id', '=', 'user_id')
             ->select(['*', 'users.created_at as user_created_at', 'experts.created_at as expert_created_at'])

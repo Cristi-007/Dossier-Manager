@@ -2,7 +2,7 @@ function notify(notifyType) {
 
     switch (notifyType) {
         case "RegisterSuccess":
-            $('.content').html(` <div class="alert_default alert_success">
+            $('.content').html(` <div class="alert alert_default alert_success">
                 <div class="notification-header">
                     <p><strong>Success:</strong></p>
                     <button type="button" class="btn-close btn-close-size" data-bs-dismiss="alert" aria-label="Close"
@@ -13,7 +13,7 @@ function notify(notifyType) {
         break;
 
         case "RegisterError":
-            $('.content').html(` <div class="alert_default alert-error">
+            $('.content').html(` <div class="alert alert_default alert-error">
                 <div class="notification-header">
                     <p><strong>Error:</strong></p>
                     <button type="button" class="btn-close btn-close-size" data-bs-dismiss="alert" aria-label="Close"
@@ -24,7 +24,7 @@ function notify(notifyType) {
         break;
 
         case "UpdateSuccess":
-            $('.content').html(` <div class="alert_default alert_success">
+            $('.content').html(` <div class="alert alert_default alert_success">
                 <div class="notification-header">
                     <p><strong>Success:</strong></p>
                     <button type="button" class="btn-close btn-close-size" data-bs-dismiss="alert" aria-label="Close"
@@ -35,7 +35,7 @@ function notify(notifyType) {
         break;
 
         case "UpdateError":
-            $('.content').html(` <div class="alert_default alert-error">
+            $('.content').html(` <div class="alert alert_default alert-error">
                 <div class="notification-header">
                     <p><strong>Error:</strong></p>
                     <button type="button" class="btn-close btn-close-size" data-bs-dismiss="alert" aria-label="Close"
@@ -46,7 +46,7 @@ function notify(notifyType) {
         break;
 
         case "DeleteSuccess":
-            $('.content').html(` <div class="alert_default alert_success">
+            $('.content').html(` <div class="alert alert_default alert_success">
                 <div class="notification-header">
                     <p><strong>Success:</strong></p>
                     <button type="button" class="btn-close btn-close-size" data-bs-dismiss="alert" aria-label="Close"
@@ -57,7 +57,7 @@ function notify(notifyType) {
         break;
 
         case "DeleteError":
-            $('.content').html(` <div class="alert_default alert-error">
+            $('.content').html(` <div class="alert alert_default alert-error">
                 <div class="notification-header">
                     <p><strong>Error:</strong></p>
                     <button type="button" class="btn-close btn-close-size" data-bs-dismiss="alert" aria-label="Close"
@@ -69,7 +69,7 @@ function notify(notifyType) {
 
 
         case "EmployeeRegisterSuccess":
-            $('.content').html(` <div class="alert_default alert_success">
+            $('.content').html(` <div class="alert alert_default alert_success">
                 <div class="notification-header">
                     <p><strong>Success:</strong></p>
                     <button type="button" class="btn-close btn-close-size" data-bs-dismiss="alert" aria-label="Close"
@@ -80,7 +80,7 @@ function notify(notifyType) {
          break
 
         case "EmployeeRegisterError":
-            $('.content').html(` <div class="alert_default alert-error">
+            $('.content').html(` <div class="alert alert_default alert-error">
                 <div class="notification-header">
                     <p><strong>Error:</strong></p>
                     <button type="button" class="btn-close btn-close-size" data-bs-dismiss="alert" aria-label="Close"
@@ -92,7 +92,7 @@ function notify(notifyType) {
 
 
          case "EmployeeUpdateSuccess":
-            $('.content').html(` <div class="alert_default alert_success">
+            $('.content').html(` <div class="alert alert_default alert_success">
                 <div class="notification-header">
                     <p><strong>Success:</strong></p>
                     <button type="button" class="btn-close btn-close-size" data-bs-dismiss="alert" aria-label="Close"
@@ -103,7 +103,7 @@ function notify(notifyType) {
         break;
 
         case "EmployeeUpdateError":
-            $('.content').html(` <div class="alert_default alert-error">
+            $('.content').html(` <div class="alert alert_default alert-error">
                 <div class="notification-header">
                     <p><strong>Error:</strong></p>
                     <button type="button" class="btn-close btn-close-size" data-bs-dismiss="alert" aria-label="Close"
@@ -114,9 +114,34 @@ function notify(notifyType) {
         break;
         
 
+        case "NomenclatureRegisterSuccess":
+            $('.content').html(` <div class="alert alert_default alert_success">
+                <div class="notification-header">
+                    <p><strong>Success:</strong></p>
+                    <button type="button" class="btn-close btn-close-size" data-bs-dismiss="alert" aria-label="Close"
+                        style="background-size: 0.70em"></button>
+                </div>
+                <small><em>Nomenclatorul a fost adăugat cu succes.</em></small>
+            </div> `);
+        break;
+
+
+
+        case "NomenclatureRegisterError":
+            $('.content').html(` <div class="alert alert_default alert-error">
+                <div class="notification-header">
+                    <p><strong>Error:</strong></p>
+                    <button type="button" class="btn-close btn-close-size" data-bs-dismiss="alert" aria-label="Close"
+                        style="background-size: 0.70em"></button>
+                </div>
+                <small><em>A survenit o eroare la adăugara nomenclatorului.</em></small>
+            </div> `);
+        break;
+       
+
     
         default:
-            $('.content').html(` <div class="alert_default">
+            $('.content').html(` <div class="alert alert_default">
                 <div class="notification-header">
                     <p><strong>Unknown:</strong></p>
                     <button type="button" class="btn-close btn-close-size" data-bs-dismiss="alert" aria-label="Close"
@@ -143,8 +168,8 @@ function showNotification(notifyType) {
 $(document).ready(function(e) {
 
     if (window.location.pathname === "/addDossier") {
-        if (document.getElementById('test-id').value === "RegisterSuccess") {
-            showNotification(document.getElementById('test-id').value)
+        if (document.getElementById('register-check').value === "RegisterSuccess") {
+            showNotification(document.getElementById('register-check').value)
         }
 
         refineDepartments(document.getElementById('subdivision').value);
@@ -166,13 +191,13 @@ $(document).ready(function(e) {
 
 
     if (window.location.pathname === "/employee_manager_register") {
-        switch (document.getElementById('test-id').value) {
+        switch (document.getElementById('register-check').value) {
             case 'EmployeeRegisterSuccess':
-                showNotification(document.getElementById('test-id').value)
+                showNotification(document.getElementById('register-check').value)
                 break;
         
             case 'EmployeeRegisterError':
-                showNotification(document.getElementById('test-id').value)
+                showNotification(document.getElementById('register-check').value)
                 break;
         }
     }
@@ -187,5 +212,26 @@ $(document).ready(function(e) {
         }
     }
 
+
+    currentLocation = window.location.pathname;
+    splittedCurrentLocation = currentLocation.split('/')
+    if (splittedCurrentLocation[1] === "nomenclatures_register") {
+        console.log(splittedCurrentLocation)
+
+        if(document.getElementById('register-check').value !== 'free') {
+            showNotification(document.getElementById('register-check').value)
+        }
+
+    }
+
+
+      // if (window.location.pathname === "/nomenclatures_view") {
+
+    //     switch (document.getElementById('routeAction').value) {
+    //         case 'update':
+    //             showNotification(document.getElementById('update-check').value)
+    //             break;
+    //     }
+    // }
 
 })

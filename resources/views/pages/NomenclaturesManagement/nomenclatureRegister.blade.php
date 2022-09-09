@@ -47,7 +47,7 @@
                     </div>
                 </div>
             
-                <input type="hidden" id="test-id" value="{{$notificationCheck}}">
+                <input type="hidden" id="register-check" value="{{$notificationCheck}}">
             </div>
             <div class="atention">
                 <span style="font-size: 15px"> * ex: "Cauza penala" -> "C.P.". </span>
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             
-                <input type="hidden" id="test-id" value="{{$notificationCheck}}">
+                <input type="hidden" id="register-check" value="{{$notificationCheck}}">
             </div>
             <div class="atention">
                 <span style="font-size: 15px"> * ex: "Dactiloscopică".</span>
@@ -118,7 +118,7 @@
                     <br>
                 </div>
         
-                <input type="hidden" id="test-id" value="{{$notificationCheck}}">
+                <input type="hidden" id="register-check" value="{{$notificationCheck}}">
             </div>
             <div class="atention">
                 <span style="font-size: 15px"> * ex: "Repetată".</span>
@@ -159,7 +159,7 @@
                     </div>
                 </div>
             
-                <input type="hidden" id="test-id" value="{{$notificationCheck}}">
+                <input type="hidden" id="register-check" value="{{$notificationCheck}}">
             </div>
             <div class="atention">
                 <span style="font-size: 15px"> * ex: "Telefon mobil" -> "t/m".</span>
@@ -200,7 +200,7 @@
                     </div>
                 </div>
             
-                <input type="hidden" id="test-id" value="{{$notificationCheck}}">
+                <input type="hidden" id="register-check" value="{{$notificationCheck}}">
             </div>
             <div class="atention">
                 <span style="font-size: 15px"> * ex: "Rapord de expertiză judiciară" -> "R.E.J.".</span>
@@ -241,7 +241,7 @@
                     </div>
                 </div>
             
-                <input type="hidden" id="test-id" value="{{$notificationCheck}}">
+                <input type="hidden" id="register-check" value="{{$notificationCheck}}">
             </div>
             <div class="atention">
                 <span style="font-size: 15px"> * ex: "Inspectoratul genral al poliției" -> "I.G.P.".</span>
@@ -293,7 +293,7 @@
                     </div>
                 </div>
             
-                <input type="hidden" id="test-id" value="{{$notificationCheck}}">
+                <input type="hidden" id="register-check" value="{{$notificationCheck}}">
             </div>
             <div class="atention">
                 <span style="font-size: 15px"> * ex: "Inspectoratul de poliție Ciocana" -> "I.P. Ciocana".</span>

@@ -39,9 +39,8 @@ Route::view('/employee_manager_register', 'pages.EmployeeManagement.employeeRegi
 Route::put('/employee_manager_view', [App\Http\Controllers\EmployeeController::class, 'update']);
 
 
-Route::view('/nomenclatures_view', 'pages.NomenclaturesManagement.nomenclatureView')->name('NomenclaturesView');
+Route::view('/nomenclatures_view', 'pages.NomenclaturesManagement.nomenclatureView', ['UpdateStatus' => 'free'])->name('NomenclaturesView');
 Route::get('/nomenclatures_register/{table}', function($table) {
-
     if ($table != 'Unitati') {
         return view('pages.NomenclaturesManagement.nomenclatureRegister', ["table" => $table, 'notificationCheck' => 'free']);
     } else {
@@ -49,10 +48,9 @@ Route::get('/nomenclatures_register/{table}', function($table) {
         return view('pages.NomenclaturesManagement.nomenclatureRegister', ["table" => $table, 'notificationCheck' => 'free', 
                     'subdivisions'=>$subdivisions]);
     }
-    
 })->name('NomenclaturesRegisterView')->where('table', '[\w\s\-_\/]+');
 Route::post('/nomenclatures_register', [App\Http\Controllers\NomenclaturesController::class, 'register'])->name('RegisterNomenclature');
-
+Route::put('/nomenclatures_view', [App\Http\Controllers\NomenclaturesController::class, 'update']);
 
 
 // routes for ajax requests

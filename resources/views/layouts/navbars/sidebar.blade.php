@@ -6,7 +6,7 @@
     -->
 
   <div class="logo">
-    <a href="" class="simple-text logo-normal">
+    <a href="{{route('dashboard')}}" class="simple-text logo-normal">
       {{ __('Evidence') }}
     </a>
   </div>
@@ -18,8 +18,8 @@
       <div class="user-avatar">
         <img src="images/User_18.jpg" alt="" class="user-avatar-img">
       </div>
-      <div class="user-name">
-        <span>Harea Cristian</span>
+      <div class="user-name" id="user-name">
+        <span>{{ ucwords(strtolower( str_replace('.', ' ', Auth::user()->username) )) }}</span>
       </div>
       
     </div>
@@ -36,38 +36,37 @@
         </a>
       </li>
 
+@if (Auth::user()->accesstype == "Administrator")
+<li class="nav-item">
+  <a class="nav-link" data-bs-toggle="collapse" href="#admin-panel" id="collapse-parent" aria-expanded="false" aria-controls="admin-panel">
+    <span class="sidebar-mini"> A </span>
+    <span class="sidebar-normal">{{ __('Administrator') }}
+      <b class="caret"></b>
+    </span>
+  </a>
 
+  <div class="collapse" id="admin-panel">
+    <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#admin-panel" id="collapse-parent" aria-expanded="false" aria-controls="admin-panel">
-          <span class="sidebar-mini"> A </span>
-          <span class="sidebar-normal">{{ __('Administrator') }}
-            <b class="caret"></b>
-          </span>
+        <a class="nav-link" href="{{ route('ShowEmployeeList') }}">
+          <span class="sidebar-mini"> MA </span>
+          <span class="sidebar-normal"> {{ __('Manager Angajați') }} </span>
         </a>
-
-        <div class="collapse" id="admin-panel">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('ShowEmployeeList') }}">
-                <span class="sidebar-mini"> MA </span>
-                <span class="sidebar-normal"> {{ __('Manager Angajați') }} </span>
-              </a>
-            </li>
-             <li class="nav-item">
-              <a class="nav-link" href="{{ route('NomenclaturesView') }}">
-                <span class="sidebar-mini"> MN </span>
-                <span class="sidebar-normal">{{ __('Manager Nomenclatoare') }} </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="{{ route('NomenclaturesView') }}">
+          <span class="sidebar-mini"> MN </span>
+          <span class="sidebar-normal">{{ __('Manager Nomenclatoare') }} </span>
+        </a>
+      </li>
+    </ul>
+  </div>
 
+</li>
+@endif
 
       <li class="nav-item">
         <a class="nav-link" href="{{ route('NewDossiser') }}">
-          {{-- {{ route('register') }} -- acceasam ruta prin numele acesteia(......->name('register')) --}}
           <span class="sidebar-mini"> ID </span>
           <span class="sidebar-normal">{{ __('Întegistrare Dosar') }} </span>
         </a>

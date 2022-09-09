@@ -23,6 +23,10 @@
                     </select>
                 </div>
             </div>
+            <div id="check-boxes">
+                <input type="hidden" id="update-check" value="{{$UpdateStatus}}">
+                {{-- <input type="hidden" id="routeAction" value="{{$routeAction}}">         --}}
+            </div>
             <div id="paginatedTable">
                 {{-- data from ajax --}}
             </div>
